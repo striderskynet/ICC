@@ -14,7 +14,7 @@
         </div>-->
       </section>
       <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05);">&copy; 2022 Copyright -- <?php echo _VERSION ?> --
-        <a class="text-reset fw-bold" href="https://github.com/striderskynet/">GitHub / StriderSkynet</a>
+        <a class="text-reset fw-bold" href="https://github.com/striderskynet/ICC">GitHub / StriderSkynet</a>
       </div>
     </footer>
 </body>
