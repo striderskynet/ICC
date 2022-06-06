@@ -3,7 +3,7 @@
 
         $theme_script = "logs";
         //$clients_data = api("clients", "list");
-        $log_dir = $_SERVER['DOCUMENT_ROOT'] . "/new/logs/";
+        $log_dir = $_SERVER['DOCUMENT_ROOT'] . "/logs/";
         
         if ( @isset($_GET['log']) )
         {

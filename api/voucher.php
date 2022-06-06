@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require_once ($_SERVER['DOCUMENT_ROOT'] . "/new" . '/core/config.php');
+    require_once ($_SERVER['DOCUMENT_ROOT'] . '/core/config.php');
 
     $voucherID = $_GET['id'];
    
@@ -14,7 +14,7 @@
     $data['companions'] = @show_companions($data['companions']);
 
     
-    $html = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . "/new/core/themes/voucher/voucher_" . $config['title'] . ".html" );
+    $html = file_get_contents( _LOCAL . "core/themes/voucher/voucher_" . $config['title'] . ".html" );
     echo tokenize($data, $html);
     
 ?>

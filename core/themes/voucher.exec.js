@@ -36,7 +36,7 @@ function button_voucher_del(button) {
   clientModalShow = false;
 
   // Getting voucherID from DataSet
-  var voucher_id = button.dataset.userId.replace("v", "");
+  var voucher_id = button.dataset.voucherId
   let url_del_voucher = "./api/?vouchers&delete&id=" + voucher_id;
 
   // Executing the API for VOUCHER DELETION

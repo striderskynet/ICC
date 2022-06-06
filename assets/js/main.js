@@ -421,7 +421,7 @@ function reload_autocomplete(){
 
 // On Logout Button Click just LOGOUT and Reload
 $("#logout_button").click(function() {
-    $.get( "./api/?users&logout" );
+    $.get( "./api/logout.php" );
     console.log("Login out user");
   
     setTimeout(function(){

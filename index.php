@@ -22,16 +22,13 @@ if (isset($_SESSION['USERID'])) {
       break;
   }
 } else {
-
   // Check if this is a new Install and Execute Install.php
-
   if (api("users", "total") == 1){
     include_once(_LOCAL . "core/themes/login.php");
   } else {
     if ( file_exists(_LOCAL . "core/themes/install.php") )
       include_once(_LOCAL . "core/themes/install.php");
   }
-    
 }
 
 

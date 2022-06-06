@@ -170,18 +170,6 @@ $("#button_client_add").click(function(){
     console.log("Populando lista de paises");
     populate_countries_select();
 
-    var $select_modal = $("#acf_contact_status");   
-
-    C_status.forEach(function(key){
-        
-        console.log(key);
-        var option = document.createElement("option");
-        option.innerHTML = key[1];
-        option.value = key[0].toLowerCase();
-        option.classList.add(`btn-${key[2]}`, 'select-item');
-        $select_modal.append(option);
-    });
-
     //show_alert('success', 'Nuevo cliente agregado', 5);
 });
 
@@ -198,7 +186,8 @@ $("#button_generate_client").click(function(){
         //url: 'https://raw.githubusercontent.com/dominictarr/random-name/master/first-names.txt',
         url: './debug/first-names.txt',
         success: function (data) {
-            name_list = data.split("\r\n");
+            name_list = data.split("\n");
+            console.dir(name_list);
             info['name'] = name_list[Math.floor( (Math.random() * name_list.length) + 1 )];
         },
         async: false
@@ -214,6 +203,7 @@ $("#button_generate_client").click(function(){
         async: false
     });
 
+    
     info['passport'] = Math.floor(Math.random() * 100000000000);
     info['phone'] = "+" + (Math.floor(Math.random() * 100) + 1) + " " + (Math.floor(Math.random() * 10) + 1) + " (" + Math.floor(Math.random() * 1000) + ") " + Math.floor(Math.random() * 10000);
     info['country'] = Object.keys(C.countries)[ Math.floor(Math.random() * Object.keys(C.countries).length) ];
@@ -280,6 +270,16 @@ $("#main-table").children("thead").children("tr").children("th").click(function 
 $.get( "./api/?clients&list", function( data ) {
     //console.log(data);
     populate_data(JSON.parse(data),offset , main_table, main_table_row); 
+});
+
+var $select_modal = $("#acf_contact_status");   
+
+C_status.forEach(function(key){
+    var option = document.createElement("option");
+    option.innerHTML = key[1];
+    option.value = key[0].toLowerCase();
+    option.classList.add(`btn-${key[2]}`, 'select-item');
+    $select_modal.append(option);
 });
 /*
 function insertAfter(referenceNode, newNode) {

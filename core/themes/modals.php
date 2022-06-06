@@ -52,7 +52,7 @@
                                         
                                         <label class="input-group-text"><i class="fas fa-flag"></i></label>  
                                         <select class="form-control" id="acf_contact_country" name='acf_contact_country' value='DE' text="Pais / Country" id="acf_contact_country" class='form-select' required>
-                                            <option selected>Pais / Country</option>    
+                                            <option value="DE" selected>Pais / Country</option>    
                                         </select>    
                             </div>
                         </div>
