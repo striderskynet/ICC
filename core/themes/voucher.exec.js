@@ -23,11 +23,12 @@ $("#button_voucher_add").click(function () {
 });
 
 // Execute every time there is a search in the search bar
-$("#main_search").prop("disabled", true);
-$("#main_search").prop(
+$("#main_search,#main_search_button").prop("disabled", true);
+$("#main_search,#main_search_button").prop(
   "title",
   "Deshabilitada la busqueda hasta nueva version"
 );
+
 
 // Execute when "DEL Voucher" button is pressed
 function button_voucher_del(button) {
@@ -40,7 +41,7 @@ function button_voucher_del(button) {
 
   // Executing the API for VOUCHER DELETION
   $.get(url_del_voucher, function (data) {
-    show_alert("danger", `Se ha eliminado el Voucher con ID: ${voucher_id},`, 5);
+    show_alert("danger", `Se ha eliminado el Voucher con ID: ${voucher_id}`, 5);
 
     // Populate the main Table
     $.get("./api/?vouchers&list", function (data) {

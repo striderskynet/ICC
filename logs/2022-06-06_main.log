@@ -139,3 +139,17 @@
 2022-06-06 04:52:51	| Data	|	DELETE FROM main_vouchers WHERE `main_client` = '516'; DELETE FROM main_clients WHERE `id` = '516';
 2022-06-06 04:52:52	| Data	|	DELETE FROM main_vouchers WHERE `main_client` = '514'; DELETE FROM main_clients WHERE `id` = '514';
 2022-06-06 04:52:56	| Data	|	DELETE FROM main_vouchers WHERE `main_client` = '515'; DELETE FROM main_clients WHERE `id` = '515';
+2022-06-06 05:17:05	| Data	|	INSERT INTO general_users( `username`, `password`, `role`)
+        VALUES ('nesty','a4fd01f750dabff701339a213c3be6af','root');
+2022-06-06 05:17:10	| Data	|	SELECT * FROM general_users WHERE `username`='nesty' AND `password`='a4fd01f750dabff701339a213c3be6af'
+2022-06-06 05:43:55	| Data	|	INSERT INTO general_users( `username`, `password`, `role`)
+        VALUES ('nesty','a4fd01f750dabff701339a213c3be6af','root');
+2022-06-06 05:44:01	| Data	|	SELECT * FROM general_users WHERE `username`='nesty' AND `password`='a4fd01f750dabff701339a213c3be6af'
+2022-06-06 05:44:27	| Data	|	SELECT * FROM general_users WHERE `username`='nesty' AND `password`='a4fd01f750dabff701339a213c3be6af'
+2022-06-06 05:49:19	| Data	|	INSERT INTO general_users( `username`, `password`, `role`)
+        VALUES ('nesty','a4fd01f750dabff701339a213c3be6af','root');
+2022-06-06 05:50:51	| Data	|	INSERT INTO general_users( `username`, `password`, `role`)
+        VALUES ('nesty','a4fd01f750dabff701339a213c3be6af','root');
+2022-06-06 05:51:17	| Data	|	INSERT INTO general_users( `username`, `password`, `role`)
+        VALUES ('nesty','a4fd01f750dabff701339a213c3be6af','root');
+2022-06-06 05:51:25	| Data	|	SELECT * FROM general_users WHERE `username`='nesty' AND `password`='a4fd01f750dabff701339a213c3be6af'

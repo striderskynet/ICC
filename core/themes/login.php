@@ -17,7 +17,7 @@
     var clients_data_api = null;
 </script>
 
-<div id="login-modal" data-bs-backdrop="static" class="modal fade show" aria-modal="true" aria-hidden="true">
+<div id="login-modal" data-backdrop="static" class="modal fade show" aria-modal="true" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form id='login-form' method="post" autocomplete="on">
@@ -39,8 +39,8 @@
                             </div>
                         </div>
                 </div>
-                <div class="modal-footer justify-content-between">
-                    <label class="form-check-label"><input type="checkbox"> Recordarme</label>
+                <div class="modal-footer">
+                    <!--<label class="form-check-label"><input type="checkbox"> Recordarme</label>-->
                     <input type="submit" class="btn btn-primary" value="Entrar">
                 </div>
             </form>

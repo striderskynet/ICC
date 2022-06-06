@@ -20,17 +20,16 @@
         <div class="modal-content">
             <form id='install-user-form' method="post" autocomplete="on">
                 <div class="modal-header bg-success text-light">				
-                    <h4 class="modal-title">Instalacion</h4>
+                    <h4 class="modal-title">Crear Usuario</h4>
                 </div>
                 <div class="modal-body">	
-                    
-                        <div class="form-group">
+                        <div class="form-group"><label for="user_data" class="ms-3">Usuario:</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa fa-user"></i></span>
                                 <input autocomplete='username' placeholder="Usuario" type="text" id="username_login" name="username_login" class="form-control form-icon-trailing" required="required" />
                             </div>
                         </div><br>
-                        <div class="form-group">
+                        <div class="form-group"><label for="user_data" class="ms-3">Contraseña:</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
                                 <input autocomplete='current-password' placeholder="Contraseña" type="password" id="password_login" name="password_login" class="form-control form-icon-trailing" required="required" />
@@ -42,6 +41,9 @@
                                 <input autocomplete='current-password' placeholder="Repetir Contraseña" type="password" id="password2_login" name="password2_login" class="form-control form-icon-trailing" required="required" />
                             </div>
                         </div>
+                        <div class="form-group d-flex justify-content-center">
+                            <label id='error_user_label' class="alert-danger bootstrap-growl alert p-2 mb-0 mt-0"></label>
+                         </div>
                 </div>
                 <div class="modal-footer">
                     <p>Paso 2 de 2</p>
@@ -58,33 +60,35 @@
             <form id='install-database-form' method="post" autocomplete="on">
                 <div class="modal-header bg-success text-light">				
                     <h4 class="modal-title">Crear Base de Datos</h4>
-                    
                 </div>
                 <div class="modal-body">
-                        <div class="form-group">
+                        <div class="form-group"><label for="user_data" class="ms-3">Usuario:</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa fa-user"></i></span>
                                 <input autocomplete='username' placeholder="Usuario" value='root' type="text" id="user_data" name="user_data" class="form-control form-icon-trailing" required="required" />
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group"><label for="pass_data" class="ms-3">Contraseña:</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
                                 <input autocomplete='current-password' placeholder="Contraseña" type="password" id="pass_data" name="pass_data" class="form-control form-icon-trailing" />
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group"><label for="host_data" class="ms-3">Servidor:</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
                                 <input autocomplete='hostname' placeholder="Servidor" value='127.0.0.1' type="text" id="host_data" name="host_data" class="form-control form-icon-trailing" required="required" />
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group"><label for="db_data" class="ms-3">Base de datos:</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
-                                <input autocomplete='database' placeholder="Base de datos" value='endirecto2' type="text" id="db_data" name="db_data" class="form-control form-icon-trailing" required="required" />
+                                <input autocomplete='database' placeholder="Base de datos" value='icc_endirecto' type="text" id="db_data" name="db_data" class="form-control form-icon-trailing" required="required" />
                             </div>
                         </div>
+                        <div class="form-group d-flex justify-content-center">
+                            <label id='error_data_label' class="alert-danger bootstrap-growl alert p-2 mb-0 mt-0"></label>
+                         </div>
                 </div>
                 <div class="modal-footer">
                     <p>Paso 1 de 2</p>
@@ -96,10 +100,9 @@
 </div>
 
 <script>
-    $('#install-database-modal').modal({
-        backdrop: 'static'
-    });
-    $('#install-database-modal').show();
+    $("#error_data_label").hide();
+    $("#error_user_label").hide();
+    $('#install-database-modal').modal({ backdrop: 'static' });
     
     $("#install-database-form").submit(function(e) {
     e.preventDefault();
@@ -123,13 +126,19 @@
                 data: info['log_db']
             }
         }).done(function( msg ) {
-            console.log(msg);
 
-            $('#install-database-modal').hide();
-            $('#install-user-modal').show();
+            if (msg.length === 0){
+                $('#install-database-modal').modal('hide');
+                $('#install-user-modal').modal({ backdrop: 'static' });
+            } else {
+
+                $("#error_data_label").html(msg);
+                $("#error_data_label").show();
+            }
+
         });
 
-        console.log ( info );
+        //console.log ( info );
     });
 
     $("#install-user-form").submit(function(e) {
@@ -141,19 +150,31 @@
         var log_pass = form_login[0].password_login.value;
         var log_pass2 = form_login[0].password2_login.value;
 
+        
         if ( log_pass === log_pass2 ){
             $.ajax({
             method: "POST",
             url: "./api/?users&install",
             // Passing all the variables
             data: { 
-                username: log_user,
+                username: log_user.toLowerCase(),
                 password: log_pass,
                 password2: log_pass2
             }
         }).done(function( msg ) {
-            document.location = "./";
+            $('#install-user-modal').modal('hide');
+
+            setTimeout(function(){
+                document.location = "./";
+            }, 500);
+            
         });
+        } else {
+            form_login[0].password_login.classList.add("bg-danger", "text-white");
+            form_login[0].password2_login.classList.add("bg-danger", "text-white");
+
+            $("#error_user_label").html("Las contraseñas no coinciden");
+            $("#error_user_label").show();
         }
     });
 
