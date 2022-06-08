@@ -563,3 +563,17 @@ $(document).ready(function() {
 
 });
 
+// Check if we are up to date
+$.get("https://api.github.com/repos/striderskynet/ICC/branches/master", function ( data ) {
+    var com = [];
+        com['message'] = data.commit.commit.message;
+        com['user'] = data.commit.commit.committer.name
+        com['date'] = data.commit.commit.committer.date
+
+        var date_commit = new Date(com['date']);
+        var date_last = new Date(last_commit);
+
+    if (date_commit > date_last)
+        console.log("Estamos atrasador con la fecha");
+});
+

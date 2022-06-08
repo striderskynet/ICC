@@ -2,6 +2,7 @@
     define("_LOCAL", $_SERVER['DOCUMENT_ROOT'] . "/");
 
     define("_VERSION", "0.1.0-alpha");
+    define("_COMMIT", "2022-06-08T04:51:59Z");
     define("_DEBUG", true);
 
 
