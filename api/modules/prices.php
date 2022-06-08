@@ -7,7 +7,7 @@
             echo clients_show();
             break;
         case "add":
-            echo clients_add();
+            echo price_add();
             break;
         case "list":
             echo prices_list();
@@ -29,12 +29,39 @@
         return $db->query('SELECT * FROM main_clients')->numRows();
     }
 
-    function clients_add(){
+    function price_add(){
         global $db;
 
-        $query = "INSERT INTO `main_clients` (`prefix`, `name`, `lastname`, `passport`, `phone`, `email`, `address`, `country`, `date_added`, `company`, `status`, `observations`, `last_touch`) VALUES
-        ('{$_POST['prefix']}', '{$_POST['name']}', '{$_POST['lastname']}', '{$_POST['passport']}', '{$_POST['phone']}', '{$_POST['email']}', '{$_POST['address']}', '{$_POST['country']}', now(), '{$_POST['company']}', '{$_POST['status']}', '{$_POST['observations']}', '{$_POST['last_touch']}');";
+        print_r ( $_POST );
+        $query = "INSERT INTO `price_list` (
+         `code`,
+         `name`, 
+         `type`, 
+         `place`, 
+         `from_date`, 
+         `to_date`, 
+         `price`, 
+         `price_double`, 
+         `price_tripled`, 
+         `occupancy`, 
+         `coin`, 
+         `coin_symbol`,
+         `details`) VALUES (
+        '{$_POST['apf_code']}', 
+        '{$_POST['apf_name']}', 
+        '{$_POST['apf_type']}', 
+        '{$_POST['apf_place']}', 
+        '{$_POST['apf_from_date']}', 
+        '{$_POST['apf_to_date']}', 
+        '{$_POST['apf_price']}', 
+        '{$_POST['apf_price_doubled']}', 
+        '{$_POST['apf_price_tripled']}', 
+        '{$_POST['apf_occupancy']}', 
+        '{$_POST['apf_coin']}', 
+        '{$_POST['apf_coin_symbol']}', 
+        '{$_POST['apf_details']}');";
 
+        $query = str_replace("\n", "", $query);
         debug(4, $query);
         
         if ( $db->query($query) ) return true;
@@ -149,8 +176,6 @@
         global $db;
 
         $query = 'SELECT * FROM `main_clients` WHERE `id` = ' . $_GET['id'] . ' LIMIT 1';
-
-      
 
         $data = $db->query($query)->fetchArray();
          // debug(4, $query);
