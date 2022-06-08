@@ -564,7 +564,7 @@ $(document).ready(function() {
 });
 
 // Check if we are up to date
-$.get("https://api.github.com/repos/striderskynet/ICC/branches/master", function ( data ) {
+$.get("https://api.github.com/repos/striderskynet/ICC/branches/master", function async ( data ) {
     var com = [];
         com['message'] = data.commit.commit.message;
         com['user'] = data.commit.commit.committer.name
@@ -574,6 +574,6 @@ $.get("https://api.github.com/repos/striderskynet/ICC/branches/master", function
         var date_last = new Date(last_commit);
 
     if (date_commit > date_last)
-        console.log("Estamos atrasador con la fecha");
+        show_alert("danger",`Existe una nueva actualizacion del sistema con fecha de ${date_commit.toLocaleDateString("en-US")} por "<strong>${com['user']}</strong>" con el mensaje "${com['message']}"`);
 });
 
