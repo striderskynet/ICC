@@ -190,3 +190,13 @@
         'USD', 
         '$', 
         '');
+2022-06-08 06:47:50	| Data	|	SELECT *, `main_vouchers`.`id` as voucher_id FROM main_vouchers, main_clients WHERE `main_vouchers`.`id` = 19 AND main_clients.`id` = main_vouchers.`main_client` ORDER BY main_vouchers.`id` DESC;
+2022-06-08 06:49:21	| Data	|	INSERT INTO `main_vouchers` (`main_client`, `type`, `data`, `in_date`, `out_date`, `information`, `service_partner`, `confirmation_number`) VALUES
+        ('511', 'Hotel / House', 'asd', '2022-06-16', '2022-06-28', 'asdasd', 'asdasd', 'asdasd');
+2022-06-08 15:57:55	| Data	|	DELETE FROM price_list WHERE `id` IN (5, 2);
+2022-06-08 15:58:49	| Data	|	INSERT INTO `price_list` (         `code`,         `name`,          `type`,          `place`,          `from_date`,          `to_date`,          `price`,          `price_double`,          `price_tripled`,          `occupancy`,          `coin`,          `coin_symbol`,         `details`) VALUES (        'CUCA0128EST',         'Casa BL Tejadillo',         'Standar',         'Altstadt',         '2022-06-09',         '2022-06-09',         '25',         '25',         '0',         '2 ad',         'USD',         '$',         '');
+2022-06-08 15:59:21	| Data	|	INSERT INTO `price_list` (         `code`,         `name`,          `type`,          `place`,          `from_date`,          `to_date`,          `price`,          `price_double`,          `price_tripled`,          `occupancy`,          `coin`,          `coin_symbol`,         `details`) VALUES (        'CUCA0128EST',         'Casa BL Tejadillo',         'Standar',         'Altstadt',         '2022-06-10',         '2022-06-03',         '1',         '123',         '12',         '2 ad',         'USD',         '$',         '');
+2022-06-08 16:54:59	| Data	|	SELECT * FROM general_users WHERE `username`='nesty' AND `password`='a4fd01f750dabff701339a213c3be6af'
+2022-06-08 18:29:27	| Data	|	DELETE FROM price_list WHERE `id` IN (7);
+2022-06-08 18:29:33	| Data	|	DELETE FROM price_list WHERE `id` IN (6);
+2022-06-08 18:30:08	| Data	|	DELETE FROM price_list WHERE `id` IN (4);

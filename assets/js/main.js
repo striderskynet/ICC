@@ -124,11 +124,13 @@ function populate_data(clients_data, offset = 1, m_table, m_table_row, type='cli
   $q = 0;
   Object.keys(clients_data).forEach(key => {
           const new_row = document.createElement('tr');
-          new_row.id = "data_u" + $q;
-          new_row.dataset.userId = "u" + clients_data[key].id;
+          
+          
          
           switch (type){
               case "client":
+                new_row.id = "data_u" + $q;
+                new_row.dataset.userId = "u" + clients_data[key].id;
                 new_row.setAttribute('onclick', "show_client_modal(" + clients_data[key].id + ")");
                 clients_data[key].status_type = status_type(clients_data[key].status);
                 clients_data[key].full_name = clients_data[key].prefix + " " + clients_data[key].name + " " + clients_data[key].lastname;
@@ -143,6 +145,9 @@ function populate_data(clients_data, offset = 1, m_table, m_table_row, type='cli
                 break;
 
               case "prices":
+                  new_row.id = "data_p" + $q;
+                  new_row.setAttribute('onclick', `select_tr(this, ${clients_data[key].id})`);
+                  new_row.dataset.priceId = clients_data[key].id;
                   clients_data[key].type = clients_data[key].type.charAt(0).toUpperCase() + clients_data[key].type.slice(1);
               break;
 

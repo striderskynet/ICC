@@ -16,7 +16,7 @@
             echo clients_list_min();
             break;
         case "delete":
-            echo clients_delete();
+            echo prices_delete();
             break;
         case "upload":
             echo clients_upload();
@@ -68,23 +68,28 @@
         else return false;
     }
 
-    function clients_delete(){
+    function prices_delete(){
         global $db;
-
-        $query = "DELETE FROM main_vouchers WHERE `main_client` = '{$_GET['id']}';";
-        $query1 = "DELETE FROM main_clients WHERE `id` = '{$_GET['id']}';";
         
+        $where = "WHERE `id` IN (";
+        for ($q = 0; $q < count($_POST['info']); $q++){
+        //foreach ( $_POST['info'] as $i ){
+            if ( $q == count($_POST['info']) - 1)
+                $where .= $_POST['info'][$q];
+            else
+            $where .= $_POST['info'][$q] . ", ";
+        }
+        $where .= ")";
 
-        debug(4, $query . " " . $query1);
+        $query = "DELETE FROM price_list {$where};";
+        debug(4, $query);
 
         try{
             $db->query($query);
-            $db->query($query1);
         } catch (Exception $e) {
             return $e->getMessage();
         }
-
-       return "Se ha eliminado el cliente con ID: " . $_GET['id'];
+       return "Se ha eliminado el listado con ID: " . $where;
     }
 
     function clients_list_min(){

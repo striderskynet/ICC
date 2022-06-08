@@ -21,6 +21,9 @@
             case "prices":
                 require_once ($api_directory . "modules/prices.php");
                 break;
+            case "query":
+                require_once ($api_directory . "modules/query.php");
+                break;
     }
 
     $db->close();
