@@ -9,14 +9,6 @@ var C_status = [ ['Unknown', 'Desconocido', 'danger'],
                ];
 
 // SOME MODAL DEFINITIONS //
-var clientModalShow = true;
-var add_client_modal = new bootstrap.Modal(document.getElementById('add_client_modal'));
-var add_voucher_modal = new bootstrap.Modal(document.getElementById('add_voucher_modal'));
-
-
-var clientModalLabel = new bootstrap.Modal(document.getElementById('clientModal'));
-var clientModalBody = document.getElementById('clientModalBody');
-
 var default_clientModalBody = null;
 var comp = 1;
 var offset = 1;

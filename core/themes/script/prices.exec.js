@@ -41,6 +41,6 @@ $("#add_prices_form").submit(function(e) {
     });
 });
 
-$("#data-check").click(function(){
-    console.log(this);
-});
+function select_tr(no){
+    console.log(no);
+};

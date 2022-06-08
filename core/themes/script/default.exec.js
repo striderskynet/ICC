@@ -1,3 +1,10 @@
+var clientModalShow = true;
+var add_client_modal = new bootstrap.Modal(document.getElementById('add_client_modal'));
+var add_voucher_modal = new bootstrap.Modal(document.getElementById('add_voucher_modal'));
+
+
+var clientModalLabel = new bootstrap.Modal(document.getElementById('clientModal'));
+var clientModalBody = document.getElementById('clientModalBody');
 
 const main_table_row = $("#data-default");
 var main_table = $("#main-table-body");

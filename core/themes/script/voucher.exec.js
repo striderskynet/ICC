@@ -1,3 +1,5 @@
+var add_voucher_modal = new bootstrap.Modal(document.getElementById('add_voucher_modal'));
+
 const voucher_default_row = $("#data-default");
 var voucher_main_table = $("#main-table-body");
 
