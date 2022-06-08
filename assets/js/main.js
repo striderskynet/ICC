@@ -105,6 +105,7 @@ function populate_data(clients_data, offset = 1, m_table, m_table_row, type='cli
   
   m_table[0].innerHTML = "";
 
+  
   pag_level = Math.ceil(clients_data['info'][0].total / pagination);
   
   show_total(clients_data['info'][0].total, pagination, offset);
@@ -116,10 +117,12 @@ function populate_data(clients_data, offset = 1, m_table, m_table_row, type='cli
     const error_row = document.createElement('td');
     error_row.classList.add("alert-danger", "text-center");
     error_row.style="padding: 10px;"
-    switch (type){
-        case "client": error_row.colSpan=6; break;
+
+    error_row.colSpan = m_table_row[0].cells.length;
+    /*switch (type){
+        case "client": error_row.colSpan=7; break;
         case "voucher": error_row.colSpan=8; break;
-    }
+    }*/
 
     error_row.innerHTML = "No existen elementos...";
     m_table.append(error_row);
@@ -146,6 +149,12 @@ function populate_data(clients_data, offset = 1, m_table, m_table_row, type='cli
                   clients_data[key].profile_picture = "<a class=\"text-dark\" onclick=\"show_client_modal(" + clients_data[key].id + ")\" href='#'>" + clients_data[key].profile_picture + "</a>";
                   clients_data[key].additional_clients = show_companions(clients_data[key].companions);
                 break;
+
+              case "prices":
+                  clients_data[key].type = clients_data[key].type.charAt(0).toUpperCase() + clients_data[key].type.slice(1);
+              break;
+
+              default: break;
           }
 
 
@@ -172,7 +181,6 @@ function show_client_modal(id){
             let in_html = clientModalBody.innerHTML;
             default_clientModalBody = in_html;
             
-
             modal_data.status_type = status_type(modal_data.status);
             modal_data.country_lowercase = modal_data.country.toLowerCase();
             modal_data.full_name =  modal_data.name + " " + modal_data.lastname;
@@ -222,7 +230,6 @@ function show_companions(companions){
 function status_type(status){
         let status_type;
             switch (status.toLowerCase()){
-
                 case C_status[1][0].toLowerCase(): status_type = C_status[1][2]; break;
                 case C_status[3][0].toLowerCase(): status_type = C_status[3][2]; break;
                 case C_status[2][0].toLowerCase(): status_type = C_status[2][2]; break;

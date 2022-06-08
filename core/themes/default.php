@@ -18,46 +18,43 @@
     <main class="main_wrapper mx-auto flex-shrink-0">
         <div class='d-flex justify-content-end'>
             <?php if ( _DEBUG ) { ?>
-            <button id="button_generate_client" type="button" class="btn btn-primary m-2"><i class="fas fa-plus"></i> Generar Cliente</button>
+                <button id="button_generate_client" type="button" class="btn btn-primary m-2"><i class="fas fa-plus"></i> Generar Cliente</button>
             <?php } ?>
             <button id="button_client_add" type="button" class="btn btn-success m-2"><i class="fas fa-plus"></i> Agregar</button>
         </div>
         
         
-        <table id='main-table' style='table-layout:fixed;' class="table table-striped table-responsive table-hover align-middle mb-0 bg-white rounded-top">
+        <table id='main-table' class="table table-striped table-responsive table-hover">
             <thead class="table-dark">
-            <tr>
-                <th style='width: 400px' data-order-id='lastname'>Nombre</th>
-                <th style='width: 200px' data-order-id='country'>Pasaporte / Pais</th>
-                <th style='width: 200px' data-order-id='status'>Estado</th>
-                <th style='width: 250px' data-order-id='date_added'>Fecha</th>
-                <th style='width: 150px' data-order-id='company'>Empresa</th>
-                <th style='width: 100px'>Accion</th>
-            </tr>
+                <tr>
+                    <th></th>
+                    <th data-order-id='lastname'>Nombre</th>
+                    <th data-order-id='country'>Pasaporte / Pais</th>
+                    <th data-order-id='status'>Estado</th>
+                    <th data-order-id='date_added'>Fecha</th>
+                    <th data-order-id='company'>Empresa</th>
+                    <th >Accion</th>
+                </tr>
             </thead>
             <tbody id='main-table-body'>
             <!-- Data ROW -->
                 <tr class='hide' id='data-default' data-user-id="u01">
-                    <td>
-                    <div class="d-flex align-items-center">
-                    {profile_picture}</i>
-                        <div class="ms-3" style='font-size: 15px;'>
+                    <td>{profile_picture}</td>
+                    <td style='width: auto;' class="align-start">
                             <p class="fw-bold mb-0"><strong>{prefix}</strong> {name} {lastname}</p>
                             <p class="fw-bolder ms-2 mb-0"><a class='text-info' href='mailto:{email}'>{email}</a></p>
                             <p class="fw-bolder ms-2 mb-0"><a class='text-info' href='tel:{phone}'>{phone}</a></p>
-                        </div>
-                    </div>
                     </td>
-                    <td class="align-middle">
-                    <p class="fw-normal mb-1">{passport}</p>
-                    <p class="fw-bolder mb-0"><span class="fi fi-{country_lowercase}"></span> {country} / {country_full}</p>
+                    <td>
+                        <p class="fw-normal mb-1">{passport}</p>
+                        <p class="fw-bolder mb-0"><span class="fi fi-{country_lowercase}" alt="{country_full}"></span><span>&nbsp; {country}</span> <span>/ {country_full}</span></p>
                     </td>
-                    <td class="align-middle">
+                    <td style='max-width: 100px;' class="align-start">
                         <h5><span class="badge bg-{status_type} p-2">{status}</span></h5>
                     </td>
-                    <td class="align-middle">{date_added}</td>
-                    <td class="align-middle">{company}</td>
-                    <td class="align-middle">
+                    <td style='width: auto;' class="align-middle">{date_added}</td>
+                    <td style='width: auto;' class="align-middle">{company}</td>
+                    <td style='width: auto;' class="align-middle">
                         <button id="button_voucher_add" onclick="button_voucher_add(this)" data-user-id="{id}" data-user-name="{full_name}" type="button" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-mdb-placement="top" title="Agregar reserva..."><i class="fas fa-plus"></i></button>
                         <button id="button_user_del" onclick="button_user_del(this)" data-user-id="u{id}" type="button" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-mdb-placement="top" title="Borrar cliente..."><i class="fas fa-ban"></i></button>
                     </td>

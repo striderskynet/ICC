@@ -73,6 +73,14 @@
                         <br>
                         <div class="form-group">
                             <div class="input-group">
+                                    
+                                        <label class="input-group-text"><i class="fas fa-address-card"></i></label>  
+                                        <input type="address" id="acf_contact_address" placeholder="Direccion" name="acf_contact_address" class="form-control" />
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <div class="input-group">
                                         <label class="input-group-text"><i class="fas fa-flag"></i></label> 
                                         <textarea id="acf_contact_observations" placeholder="Informacion" name="acf_contact_observations" class="form-control"></textarea>
                             </div>
@@ -245,6 +253,12 @@
                                         <h5><span class="p-2 badge bg-{status_type} d-inline">{status}</span></h5>
                                         </div>
                                     </div>
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                        <h7 class='detail_info'>Direccion</h7 class='detail_info'>
+                                        <p class="text-muted">{address}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             </div>
@@ -271,5 +285,3 @@
         </div>
     </div>
 </div>
-
-<!-- LOGIN MODAL -->

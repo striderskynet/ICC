@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `main_clients` (
   `passport` varchar(50) DEFAULT NULL,
   `phone` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
+  `address` varchar(150) DEFAULT NULL,
   `country` varchar(2) NOT NULL,
   `date_added` datetime NOT NULL,
   `company` varchar(50) DEFAULT NULL,

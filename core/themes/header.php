@@ -20,9 +20,9 @@
   <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
   <script type="text/javascript" src="./assets/js/popper.min.js"></script>
 	<script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="./assets/js/bootstrap-autocomplete.js" defer></script>
-  <script type="text/javascript" src="./assets/js/jquery.bootstrap-growl.js" defer></script>
-  <script type="text/javascript" src="./assets/js/chart.min.js" defer></script>
+  <script type="text/javascript" src="./assets/js/bootstrap-autocomplete.js"></script>
+  <script type="text/javascript" src="./assets/js/jquery.bootstrap-growl.js"></script>
+  <script type="text/javascript" src="./assets/js/chart.min.js"></script>
 
 </head>
 <body>
@@ -40,83 +40,95 @@
 </svg>
 
 
-<nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-    <div class="container-fluid"><button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle me-3" type="button"><i class="fas fa-bars"></i></button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <a class="navbar-brand" href="#?panel" alt='Inicio' title='Inicio' aria-label="Inicio"><i class="fa fa-plane text-primary fa-2x" aria-hidden="true"></i></a>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <?php if ( _DEBUG ) {?><li class="nav-item">
-            <a class="nav-link" id='nav_link_panel' href="?panel">Panel</a>
-          </li>
-          <?php } ?>
-          <li class="nav-item">
-            <a class="nav-link" id='nav_link_clients' href="?clients">Clientes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id='nav_link_voucher' href="?voucher">Reservas</a>
-          </li>
-        </ul>
-      </div>
-      <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" name='main_search'>
-            <div class="input-group">
-            <input class="bg-light form-control border-0 small" type="Search" placeholder="Buscar por ..." name="main_search" id="main_search" aria-label="Search" />
-            <button class="btn btn-primary py-0" name="main_search_button" id="main_search_button" type="button" aria-label="Buscar"><i class="fas fa-search"></i></button></div>
+<nav class="navbar navbar-light navbar-expand-md bg-white shadow-lg">
+    <div class="container-fluid">
+        <button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler">
+            <span class="visually-hidden">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#"><i class="fas fa-plane fs-1 text-primary"></i></a>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" id='nav_link_panel' href="?panel">Panel</a>
+                </li>
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="">Modulos&nbsp;</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" id='nav_link_clients' href="?clients">Clientes</a>
+                        <a class="dropdown-item" id='nav_link_voucher' href="?voucher">Reservas</a>
+                            <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" id='nav_link_prices' href="?prices">Listado de Precios</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#">Herramientas&nbsp;</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Reportes</a>
+                        <a class="dropdown-item" href="#">Mensajes / Emails</a>
+                            <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Automatizacion</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 d-md-flex d-lg-flex d-xl-flex d-xxl-flex flex-shrink-1 navbar-search" style="margin-left: auto; right: 170px; float: right; position: absolute;">
+            <div class="input-group shadow-lg" data-toggle="tooltip" data-bss-tooltip="">
+                <input class="bg-light form-control border-0 small" type="search" placeholder="Buscar ..." name="main_search" id="main_search" aria-label="Search">
+                <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button>
+            </div>
         </form>
-        <ul class="navbar-nav flex-nowrap ms-auto">
-            <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
-                <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
-                    <form class="me-auto navbar-search w-100">
-                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..." />
-                            <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav flex-nowrap ms-auto">
+                <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><i class="fas fa-search"></i>&nbsp; Buscar</a>
+                    <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
+                        <form class="me-auto d-flex navbar-search w-100">
+                            <div class="input-group">
+                                <input class="bg-light form-control border-0 small" type="search" placeholder="Buscar ..." name="main_search" id="main_search" aria-label="Search">
+                                <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+                <li class="nav-item dropdown no-arrow mx-1">
+                    <div class="nav-item dropdown no-arrow mt-1">
+                        <a class="float-end nav-link" aria-expanded="false" data-toggle="dropdown" href="#">
+                        <span class="badge bg-danger badge-counter" style="position: absolute; margin-top: -5px; margin-left: 20px;">3+</span><i class="fas fa-bell fs-4 fa-fw"></i></a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in mt-5" style="overflow: hidden; padding-bottom: 0px;">
+                                <h6 class="dropdown-header bg-primary color-white" style="border-top-left-radius: 5px; border-top-right-radius: 5px;">Centro de Alertas</h6><a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="me-3">
+                                        <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
+                                    </div>
+                                    <div><span class="small text-gray-500">December 12, 2019</span>
+                                        <p>A new monthly report&nbsp;</p>
+                                    </div>
+                                </a><a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="me-3">
+                                        <div class="bg-success icon-circle"><i class="fas fa-donate text-white"></i></div>
+                                    </div>
+                                    <div><span class="small text-gray-500">December 7, 2019</span>
+                                        <p>$290.29 has been&nbsp;</p>
+                                    </div>
+                                </a><a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="me-3">
+                                        <div class="bg-warning icon-circle"><i class="fas fa-exclamation-triangle text-white"></i></div>
+                                    </div>
+                                    <div><span class="small text-gray-500">December 2, 2019</span>
+                                        <p>Spending Alert:&nbsp;</p>
+                                    </div>
+                                </a><a class="dropdown-item text-center small text-gray-500" href="#" style="background: var(--bs-primary);color: var(--bs-white);">Todas las Alertas</a>
+                            </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown no-arrow mx-1">
+                    <div class="shadow dropdown-list dropdown-menu dropdown-menu-end" aria-labelledby="alertsDropdown"></div>
+                </li>
+                <li class="nav-item dropdown no-arrow">
+                    <div class="nav-item dropdown no-arrow"><a class="float-end nav-link" aria-expanded="false" data-toggle="dropdown" href="#" style="max-width: 100px;"><span class="fw-bold me-2 text-gray-600 small">Nesty</span><i class="fas fa-user-circle fs-3 float-end"></i></a>
+                        <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in mt-5"><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Perfil</a><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Ajustes</a><a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logs</a>
+                            <div class="dropdown-divider"></div><a id="logout_button" class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
                         </div>
-                    </form>
-                </div>
-            </li>
-            <!--<li class="nav-item dropdown no-arrow mx-1">
-                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><span class="badge bg-danger badge-counter">3+</span><i class="fas fa-bell fa-fw"></i></a>
-                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                        <h6 class="dropdown-header">centro de alertas</h6><a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="me-3">
-                                <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
-                            </div>
-                            <div><span class="small text-gray-500">Junio 1, 2022</span>
-                                <p>Se ha modificado un cliente que tu agregastes...</p>
-                            </div>
-                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="me-3">
-                                <div class="bg-success icon-circle"><i class="fas fa-donate text-white"></i></div>
-                            </div>
-                            <div><span class="small text-gray-500">Abril 7, 2022</span>
-                                <p>Se han agregado varios vouchers desde tu ultimo inicio...</p>
-                            </div>
-                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="me-3">
-                                <div class="bg-warning icon-circle"><i class="fas fa-exclamation-triangle text-white"></i></div>
-                            </div>
-                            <div><span class="small text-gray-500">December 2, 2019</span>
-                                <p>Se han eliminado algunos usuarios y reservas que tu creastes...</p>
-                            </div>
-                        </a><a class="dropdown-item text-center small text-gray-500" href="#">Todas las alertas</a>
                     </div>
-                </div>
-            </li>-->
-            <div class="d-none d-sm-block topbar-divider"></div>
-            <li class="nav-item dropdown no-arrow">
-                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small"><?php echo @ucfirst($_SESSION['USERID']) ?></span><!--<img class="border rounded-circle img-profile" src="avatars/avatar1.jpeg" />--><i class="fas fa-user-alt"></i></a>
-                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                    <!--<a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i> Perfil</a>
-                    <a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i> Registro</a>-->
-                    <a class="dropdown-item dropdown no-arrow" data-toggle="dropdown" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i> Ajustes</a>
-                    <ul class="dropdown-menu dropdown-submenu dropdown-submenu-left">
-                        <li><a class="dropdown-item" href="#"><input class="form-check-input" type="checkbox" value="" name='small_table_value' id="small_table_value" />
-                        <label class="form-check-label" for="small_table_value">Tabla peque&ntilde;a</label></a></li>
-                    </ul>
-                    <div class="dropdown-divider"></div>
-                    <a id='logout_button' class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i> Logout</a>
-                    </div>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 

@@ -18,6 +18,9 @@
             case "vouchers":
                 require_once ($api_directory . "modules/vouchers.php");
                 break;
+            case "prices":
+                require_once ($api_directory . "modules/prices.php");
+                break;
     }
 
     $db->close();

@@ -10,7 +10,7 @@
             echo clients_add();
             break;
         case "list":
-            echo clients_list();
+            echo prices_list();
             break;
         case "list_min":
             echo clients_list_min();
@@ -90,7 +90,7 @@
     }
 
 
-    function clients_list(){
+    function prices_list(){
         global $db, $config;
 
         $where = null;
@@ -115,17 +115,16 @@
         if ( @isset ($_GET['dir'] ) ){
             $dir = $_GET['dir'];
         }
-       
-            
+
         $limit = "LIMIT " . $config['misc']['pagination'];
 
         if ( @isset($_GET['offset']) )
             $offset = "OFFSET " . ( ($_GET['offset'] - 1) * $config['misc']['pagination']);
 
        
-        $query = "SELECT * FROM `main_clients` {$where} {$order} {$dir} {$limit} {$offset};";
+        $query = "SELECT * FROM `price_list` {$where} {$order} {$dir} {$limit} {$offset};";
         //$query = 'SELECT * FROM main_clients ' . $where . ' ' . $order . ' DESC ' . $limit .' ' . $offset .';';
-        $query_no_limit = 'SELECT count(*) as `total` FROM main_clients ' . $where . ' ORDER BY `id` DESC;';
+        $query_no_limit = 'SELECT count(*) as `total` FROM price_list ' . $where . ' ORDER BY `id` DESC;';
 
         //print_r ( $query );
         //debug(4, $query);
@@ -133,14 +132,6 @@
         $accounts = $res->fetchAll();
 
         foreach ($accounts as $account) {
-
-            $profile_picture = md5 (  $account['passport'] .  $account['name'] .  $account['lastname'] );
-            
-            if ( file_exists ('../uploaded/'.  $profile_picture . ".jpg") )
-                //$account['profile_picture'] = "<img style='width: 45px;' class='rounded-circle' src='./uploaded/" . $profile_picture . ".jpg' />";
-                $account['profile_picture'] = "<img class='ps-45 rounded-circle' src='./uploaded/" . $profile_picture . ".jpg' />";
-            else
-                $account['profile_picture'] = "<i class='text-dark fas fa-user-alt fa-3x'></i>";
 
             $data[] = $account;
         }

@@ -10,15 +10,20 @@ if (isset($_SESSION['USERID'])) {
   switch (@array_keys($_GET)[0]) {
     default:
       include_once(_LOCAL . "core/themes/default.php");
+      require_once(_LOCAL . "core/themes/modals.php");
       break;
     case "voucher":
       include_once(_LOCAL . "core/themes/voucher.php");
+      require_once(_LOCAL . "core/themes/modals.php");
       break;
     case "panel":
       include_once(_LOCAL . "core/themes/panel.php");
       break;
     case "logs":
       include_once(_LOCAL . "core/themes/logs.php");
+      break;
+    case "prices":
+      include_once(_LOCAL . "core/themes/prices.php");
       break;
   }
 } else {
@@ -30,8 +35,5 @@ if (isset($_SESSION['USERID'])) {
       include_once(_LOCAL . "core/themes/install.php");
   }
 }
-
-
-require_once(_LOCAL . "core/themes/modals.php");
 
 require_once(_LOCAL . "core/themes/footer.php");
