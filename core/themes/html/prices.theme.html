@@ -68,7 +68,7 @@
 </div>
 
 <main class="main_wrapper mx-auto flex-shrink-0">
-    <table id='main-table' class="table table-responsive table-hover">
+    <table id='main-table' style='table-layout:fixed;' class="table table-responsive table-hover table-striped">
         <form id="elem_form" name="" action="" method="">
             <thead class="table-dark">
                 <tr>
@@ -88,11 +88,11 @@
             <tbody id='main-table-body'>
             <!-- Data ROW -->
                 <tr class='hide' id='data-default'>
-                    <td class="editable" data-type="code"><label>{code}</label><input type='text' value="{code}"></td>
+                    <td class="editable" data-type="code"><label>{code}</label><input class='form-control form-control-sm' type='text' value="{code}"></td>
                     <td class="hide"><input id='data-check-{id}' name='data_selected[]' value="0" type='checkbox' /></td>
-                    <td class="editable" data-type="name"><label>{name}</label><input type='text' value="{name}"></td>
-                    <td class="editable" data-type="type"><label>{type}</label><input type='text' value="{type}"></td>
-                    <td class="editable" data-type="place"><label>{place}</label><input type='text' value="{place}"></td>
+                    <td class="editable" data-type="name"><label>{name}</label><input class='form-control form-control-sm' type='text' value="{name}"></td>
+                    <td class="editable" data-type="type"><label>{type}</label><input class='form-control form-control-sm' type='text' value="{type}"></td>
+                    <td class="editable" data-type="place"><label>{place}</label><input class='form-control form-control-sm' type='text' value="{place}"></td>
                     <td>{from_date} / {to_date}</td>
                     <td>{price} {coin_symbol}</td>
                     <td>{price_double} {coin_symbol}</td>
@@ -103,12 +103,22 @@
             </tbody>
         </form>
         </table>
-    <button id='delete_price_button' type="button" class="btn btn-danger hide"><i class="fa fa-minus-circle" aria-hidden="true"></i>&nbsp;Eliminar (<span>0</span>)</button>
-    <button id='duplicate_price_button' type="button" class="btn btn-success hide"><i class="fa fa-copy" aria-hidden="true"></i>&nbsp;Duplicar (<span>0</span>)</button>
+
+    <button id='delete_price_button' type="button" class="btn btn-danger btn-icon-split hide">
+        <span class="icon text-white"><i class="fa fa-minus-circle" aria-hidden="true"></i></span>
+        <span class="text">Eliminar (<strong>0</strong>)</span>
+    </button>
+    <button id='duplicate_price_button' type="button" class="btn btn-icon-split btn-success btn-icon-split hide">
+        <span class="icon text-white"><i class="fa fa-copy" aria-hidden="true"></i></span>
+        <span class="text text-white">Duplicar (<strong>0</strong>)</span>
+    </button>
     
-    <nav aria-label="...">
-        <div class='table-label'>Mostrando <strong id='table-label-min'>0</strong>-<strong id='table-label-max'>0</strong> de un total de <strong id='table-label-total'>0</strong></div>
-        <ul id='main_client_pagination' class="pagination pagination-circle m-3 justify-content-end">
-        </ul>
-    </nav>
+    
 </main>
+<nav aria-label="...">
+    <div class='table-label'>Mostrando <strong id='table-label-min'>0</strong>-<strong id='table-label-max'>0</strong> de un total de <strong id='table-label-total'>0</strong></div>
+    <ul id='main_prices_pagination' class="pagination pagination-circle m-3 justify-content-end">
+    </ul>
+</nav>
+<br><br>
+<br><br>

@@ -4,6 +4,13 @@
     --table-border: 10px;
 }
 
+thead tr th{
+  border: 0px !important;
+}
+tbody tr td{
+  border: 0px !important;
+}
+
 @media (max-width: 855px) {
     .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
       --bs-table-striped-bg: rgba(0, 0, 0, 0);
@@ -175,3 +182,46 @@
 .page-link{
   cursor: pointer;
 }
+
+.editable *:hover{
+  cursor: pointer;
+}
+
+.editable input:hover{
+  cursor:default;
+}
+
+.text-white{
+    --bs-table-striped-color: #fff;
+    --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+    --bs-table-active-color: #fff;
+    --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+    --bs-table-hover-color: #fff;
+    --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+}
+
+.log_wrapper{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+}
+
+.log_wrapper spam .important{
+    font-weight: bold;
+}
+/*
+.bootstrap-autocomplete .dropdown-item{
+  border-bottom: 1px solid #ddd;
+  padding: 0px;
+  cursor: pointer;
+}
+
+.bootstrap-autocomplete .dropdown-item:nth-child(odd){
+  background: #eee;
+}
+.bootstrap-autocomplete span{
+  display: inline-block;
+  height:auto;
+  border-right: 2px solid #000; 
+  margin: 0px 5px;
+  padding: 0px 5px;
+}*/

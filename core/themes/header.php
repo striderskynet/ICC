@@ -7,11 +7,8 @@
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <meta name="description" content='Client management system for Tourist Enterprises'>
   <link href="./assets/css/font.awesome.min.css" rel="stylesheet"/>
+  <link rel="icon" type="image/x-icon" href="./favicon.svg">
  
-  
-  <!-- Material Design Bootstrap -->
-  <!--<link href="./assets/css/mdb.min.css" rel="stylesheet" />
-  <link href="./assets/css/mdb.css" rel="stylesheet" />-->
   <link href="./assets/css/bootstrap.5.css" rel="stylesheet" />
   <link href="./assets/css/main.css" rel="stylesheet" />
   <link href="./assets/css/flags.css" rel="stylesheet" />
@@ -22,8 +19,6 @@
 	<script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="./assets/js/bootstrap-autocomplete.js"></script>
   <script type="text/javascript" src="./assets/js/jquery.bootstrap-growl.js"></script>
-  <script type="text/javascript" src="./assets/js/chart.min.js"></script>
-
 </head>
 <body>
 
@@ -65,6 +60,7 @@
                         <a class="dropdown-item" href="#">Mensajes / Emails</a>
                             <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Automatizacion</a>
+                        <a class="dropdown-item" id='nav_link_logs' href="?logs">Logs</a>
                     </div>
                 </li>
             </ul>
@@ -90,30 +86,22 @@
                 <li class="nav-item dropdown no-arrow mx-1">
                     <div class="nav-item dropdown no-arrow mt-1">
                         <a class="float-end nav-link" aria-expanded="false" data-toggle="dropdown" href="#">
-                        <span class="badge bg-danger badge-counter" style="position: absolute; margin-top: -5px; margin-left: 20px;">3+</span><i class="fas fa-bell fs-4 fa-fw"></i></a>
-                            <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in mt-5" style="overflow: hidden; padding-bottom: 0px;">
-                                <h6 class="dropdown-header bg-primary color-white" style="border-top-left-radius: 5px; border-top-right-radius: 5px;">Centro de Alertas</h6><a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="me-3">
-                                        <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
-                                    </div>
-                                    <div><span class="small text-gray-500">December 12, 2019</span>
-                                        <p>A new monthly report&nbsp;</p>
-                                    </div>
-                                </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="me-3">
-                                        <div class="bg-success icon-circle"><i class="fas fa-donate text-white"></i></div>
-                                    </div>
-                                    <div><span class="small text-gray-500">December 7, 2019</span>
-                                        <p>$290.29 has been&nbsp;</p>
-                                    </div>
-                                </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="me-3">
-                                        <div class="bg-warning icon-circle"><i class="fas fa-exclamation-triangle text-white"></i></div>
-                                    </div>
-                                    <div><span class="small text-gray-500">December 2, 2019</span>
-                                        <p>Spending Alert:&nbsp;</p>
-                                    </div>
-                                </a><a class="dropdown-item text-center small text-gray-500" href="#" style="background: var(--bs-primary);color: var(--bs-white);">Todas las Alertas</a>
+                        <span class="badge bg-danger badge-counter alert-counter hide" style="position: absolute; margin-top: -5px; margin-left: 20px;">0</span><i class="fas fa-bell fs-4 fa-fw"></i></a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in mt-5 main-alert" style="overflow: hidden; padding-bottom: 0px;">
+                                <h6 class="dropdown-header bg-primary color-white" style="border-top-left-radius: 5px; border-top-right-radius: 5px;">Centro de Alertas</h6>
+                                <div class="main-alert-element bg-pink">
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="me-3">
+                                            <div class="bg-{color} icon-circle">
+                                                <i class="fas fa-{type} text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div><span class="small text-gray-500">{date}</span>
+                                            <p>{value}</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <a class="dropdown-item text-center small text-gray-500" href="#" style="background: var(--bs-primary);color: var(--bs-white);">Todas las Alertas</a>
                             </div>
                     </div>
                 </li>
@@ -121,7 +109,11 @@
                     <div class="shadow dropdown-list dropdown-menu dropdown-menu-end" aria-labelledby="alertsDropdown"></div>
                 </li>
                 <li class="nav-item dropdown no-arrow">
-                    <div class="nav-item dropdown no-arrow"><a class="float-end nav-link" aria-expanded="false" data-toggle="dropdown" href="#" style="max-width: 100px;"><span class="fw-bold me-2 text-gray-600 small">Nesty</span><i class="fas fa-user-circle fs-3 float-end"></i></a>
+                    <div class="nav-item dropdown no-arrow">
+                        <a class="float-end nav-link" aria-expanded="false" data-toggle="dropdown" href="#" style="max-width: 100px;">
+                            <span class="fw-bold me-2 text-gray-600 small"></span>
+                            <i class="fas fa-user-circle fs-3 float-end"></i>
+                        </a>
                         <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in mt-5"><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Perfil</a><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Ajustes</a><a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logs</a>
                             <div class="dropdown-divider"></div><a id="logout_button" class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
                         </div>

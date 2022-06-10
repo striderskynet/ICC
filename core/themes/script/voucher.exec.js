@@ -21,8 +21,6 @@ $.get("./api/?vouchers&list", function (data) {
 $("#button_voucher_add").click(function () {
   console.log("Mostrando modal de Reserva Nueva");
 
-               
-
   // Show "ADD Voucher" modal
   add_voucher_modal.show();
 });
@@ -72,3 +70,43 @@ function button_voucher_print(element) {
 
   window.open("./api/voucher.php?id=" + voucher_id, "_blank").focus();
 }
+
+
+$('.priceAutoComplete').autoComplete({
+  resolver: 'custom',
+  minLength:1,
+  events: {
+      search: function (qry, callback) {
+          // let's do a custom ajax call
+          $.ajax(
+              './api/?prices&list_min',
+              {
+                  data: { 'q': qry}
+              }
+          ).done(function (res) {
+              callback(JSON.parse(res))
+          });
+      }
+  }
+});
+
+$('.priceAutoComplete').on('autocomplete.select', function (evt, item) {
+  const element = this;
+  const pr_text = $("#avf_data");
+  const in_date = $("#avf_inDate");
+  const out_date = $("#avf_outDate");
+
+  $.get( `./api/?prices&list&wh=WHERE+id+=+${item.value}`, function( data ) {
+    data = JSON.parse(data);
+    element.value = data[0].code;
+
+    console.dir(data);
+    pr_text.text(`${data[0].name} (${data[0].place})\n\t${data[0].type}`);
+    in_date.prop("min", data[0].from_date );
+    in_date.prop("max", data[0].to_date );
+    out_date.prop("min", data[0].from_date );
+    out_date.prop("max", data[0].to_date );
+});
+  
+  //select_name("#" + this.id, item.text, item.value);
+});   

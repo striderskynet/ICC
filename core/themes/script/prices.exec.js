@@ -2,12 +2,22 @@ const prices_table_row = $("#data-default");
 var prices_table = $("#main-table-body");
 var selected_items = [];
 
-pagination = 50;
+const main_table_row = $("#data-default");
+var main_table = $("#main-table-body");
+
+pagination = 25;
 
 $.get( "./api/?prices&list&orderBy=code", function( data ) {
     populate_data(JSON.parse(data), offset, prices_table, prices_table_row, 'prices'); 
     editable_table_reload();
 });
+
+// Execute every time there is a search in the search bar
+$("#main_search,#main_search_button").prop("disabled", true);
+$("#main_search,#main_search_button").prop(
+  "title",
+  "Deshabilitada la busqueda hasta nueva version"
+);
 
 $(".card-header").click(function(){
     $(".card-body").slideToggle();
@@ -37,6 +47,7 @@ $("#add_prices_form").submit(function(e) {
                 // Reload the main table data
                 $.get( "./api/?prices&list", function( data ) {
                     populate_data(JSON.parse(data), offset, prices_table, prices_table_row, 'prices'); 
+                    editable_table_reload();
                 });
         }
     });
@@ -59,8 +70,9 @@ function select_tr(element, no){
     }
 
     var len = selected_items.length;
-    $("#delete_price_button span").html(len);
-    $("#duplicate_price_button span").html(len);
+    $("#delete_price_button span strong").html(len);
+    $("#duplicate_price_button span strong").html(len);
+
     if ( len > 0 ) {
         $("#delete_price_button").fadeIn()
         $("#duplicate_price_button").fadeIn()
@@ -68,7 +80,6 @@ function select_tr(element, no){
         $("#delete_price_button").fadeOut()
         $("#duplicate_price_button").fadeOut()
     }
-
 };
 
 $("#delete_price_button").click(function(e){
@@ -83,21 +94,34 @@ $("#delete_price_button").click(function(e){
             type: 'POST',
             data: {info: selected_items},
             success: function(msg){
-                console.log(msg);
                 $.get( "./api/?prices&list", function( data ) {
                     populate_data(JSON.parse(data), offset, prices_table, prices_table_row, 'prices'); 
                     editable_table_reload()
+                    clear_selected();
                 });
         }
         });
     }
+
+    clear_selected();
 });
+
+function clear_selected(){
+
+    selected_items = [];
+    var len = selected_items.length;
+    $("#delete_price_button span strong").html(len);
+    $("#duplicate_price_button span strong").html(len);
+
+
+    $("#delete_price_button").toggle();
+    $("#duplicate_price_button").toggle();
+}
 
 $("#duplicate_price_button").click(function(e){
     e.preventDefault();
 
     if ( selected_items.length > 0){
-        console.log(selected_items);
         console.log("Duplicating items");
 
         $.ajax({
@@ -105,11 +129,11 @@ $("#duplicate_price_button").click(function(e){
             type: 'POST',
             data: {info: selected_items},
             success: function(msg){
-                console.log(msg);
-               /* $.get( "./api/?prices&list", function( data ) {
+                $.get( "./api/?prices&list", function( data ) {
                     populate_data(JSON.parse(data), offset, prices_table, prices_table_row, 'prices'); 
                     editable_table_reload()
-                });*/
+                    clear_selected();
+                });
         }
         });
     }
@@ -150,7 +174,7 @@ function editable_table_reload(){
         var id = event.key || event.which || event.keyCode || 0;  
             if (id === "Enter") {
                 $(event.currentTarget.children[0]).text($(event.target).val());
-                $(event.currentTarget.children[0]).parent().addClass("bg-warning font-weight-bold");
+                $(event.currentTarget.children[0]).parent().addClass("bg-warning text-white font-weight-bold");
                 $(event.currentTarget.children[0]).toggle();
                 $(event.target).toggle();
 

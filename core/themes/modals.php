@@ -128,28 +128,30 @@
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <label class="input-group-text" for="inputGroupSelect01">Tipo</label>
-                                <input class="form-control" list="datalistOptions" name="avf_type" placeholder="Escojer el tipo de reserva" required/>
+                                <label class="input-group-text" for="inputGroupSelect01">ID</label>
+                                <input class="form-control priceAutoComplete" name="avf_type" placeholder="Escojer la reserva" autocomplete="off" required/>
+                                <!--<input class="form-control" list="datalistOptions" name="avf_type" placeholder="Escojer el tipo de reserva" required/>
                                 <datalist id="datalistOptions">
                                                 <option value="Hotel / House"></option>
                                                 <option value="Event / Show"></option>
                                                 <option value="Transfer"></option>
                                                 <option value="Otro"></option>
                                 </datalist>
+                                -->
                                 </div>
                         </div>
                         <div class="form-group">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Detalles" name="avf_data" style="height: 100px; resize:both;" required></textarea>
+                                    <textarea class="form-control" placeholder="Detalles" id="avf_data" name="avf_data" style="height: 100px; resize:both;" required></textarea>
                                 </div>
                             
                         </div>
                         <div class="form-group">
                             <div class="input-group d-flex">
                                     <div class="date_picker input-group date" id="datepicker">
-                                        <input type="date" class="form-control" name="avf_inDate" id="mres_inDate" title="Fecha de Entrada" autocomplete="off" required>
+                                        <input type="date" class="form-control" name="avf_inDate" id="avf_inDate" title="Fecha de Entrada" autocomplete="off" required>
                                         
-                                        <input type="date" class="form-control" name="avf_outDate" id="mres_outDate" title="Fecha de Salida" autocomplete="off" required>
+                                        <input type="date" class="form-control" name="avf_outDate" id="avf_outDate" title="Fecha de Salida" autocomplete="off" required>
                                     </div>
                             </div>
                         </div>

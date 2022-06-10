@@ -18,9 +18,15 @@
     <main class="main_wrapper mx-auto flex-shrink-0">
         <div class='d-flex justify-content-end'>
             <?php if ( _DEBUG ) { ?>
-                <button id="button_generate_client" type="button" class="btn btn-primary m-2"><i class="fas fa-plus"></i> Generar Cliente</button>
+                <button id="button_generate_client" type="button" class="btn btn-primary m-2 btn-icon-split">
+                    <span class="icon text-white"><i class="fas fa-circle-plus"></i></span>
+                    <span class="text">Generar Cliente</span>
+                </button>   
             <?php } ?>
-            <button id="button_client_add" type="button" class="btn btn-success m-2"><i class="fas fa-plus"></i> Agregar</button>
+            <button id="button_client_add" type="button" class="btn btn-success btn-icon-split m-2">
+                <span class="icon text-white"><i class="fas fa-circle-plus"></i></span>
+                <span class="text">Agregar</span>
+            </button>
         </div>
         
         
@@ -28,9 +34,9 @@
             <thead class="table-dark">
                 <tr>
                     <th></th>
-                    <th data-order-id='lastname'>Nombre</th>
-                    <th data-order-id='country'>Pasaporte / Pais</th>
-                    <th data-order-id='status'>Estado</th>
+                    <th class="align-start" data-order-id='lastname'>Nombre</th>
+                    <th class="align-start" data-order-id='country'>Pasaporte / Pais</th>
+                    <th class="align-start" data-order-id='status'>Estado</th>
                     <th data-order-id='date_added'>Fecha</th>
                     <th data-order-id='company'>Empresa</th>
                     <th >Accion</th>
@@ -45,11 +51,11 @@
                             <p class="fw-bolder ms-2 mb-0"><a class='text-info' href='mailto:{email}'>{email}</a></p>
                             <p class="fw-bolder ms-2 mb-0"><a class='text-info' href='tel:{phone}'>{phone}</a></p>
                     </td>
-                    <td>
+                    <td class="align-start">
                         <p class="fw-normal mb-1">{passport}</p>
                         <p class="fw-bolder mb-0"><span class="fi fi-{country_lowercase}" alt="{country_full}"></span><span>&nbsp; {country}</span> <span>/ {country_full}</span></p>
                     </td>
-                    <td style='max-width: 100px;' class="align-start">
+                    <td style='max-width: 100px;' class="align-middle align-start">
                         <h5><span class="badge bg-{status_type} p-2">{status}</span></h5>
                     </td>
                     <td style='width: auto;' class="align-middle">{date_added}</td>

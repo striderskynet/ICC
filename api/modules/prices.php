@@ -13,7 +13,10 @@
             echo prices_list();
             break;
         case "list_min":
-            echo clients_list_min();
+            echo prices_list_min();
+            break;
+        case "duplicate":
+            echo prices_duplicate();
             break;
         case "delete":
             echo prices_delete();
@@ -29,10 +32,37 @@
         return $db->query('SELECT * FROM main_clients')->numRows();
     }
 
+    function prices_list_min(){
+        global $db;
+        $where = null;
+
+        if ( @isset($_GET['data']) ) {
+            $where  = "WHERE `code` LIKE '%" . $_GET['data'] . "%'";
+            $where .= " OR `name` LIKE '%" . $_GET['data'] . "%'";
+            $where .= " OR `type` LIKE '%" . $_GET['data'] . "%'";
+            $where .= " OR `place` LIKE '%" . $_GET['data'] . "%'";
+            $where .= " OR `details` LIKE '%" . $_GET['data'] . "%'";
+        }
+
+        $query = 'SELECT id as `value`, CONCAT("<span>", code, "</span><span>", name, "</span><span>", type, "</span><span>", place, "</span>") as `text` FROM price_list ' . $where . ' ORDER BY `id` DESC;';
+
+        $res = $db->query($query);
+        $accounts = $res->fetchAll();
+
+        foreach ($accounts as $account) {
+            $data[] = $account;
+        }
+       
+        if (!isset($data))
+             $data = "";
+
+       echo json_encode($data, JSON_PRETTY_PRINT);
+    }
+
     function price_add(){
         global $db;
 
-        print_r ( $_POST );
+        //print_r ( $_POST );
         $query = "INSERT INTO `price_list` (
          `code`,
          `name`, 
@@ -92,33 +122,17 @@
        return "Se ha eliminado el listado con ID: " . $where;
     }
 
-    function clients_list_min(){
+    function prices_duplicate(){
         global $db;
-        $where = null;
 
-        if ( @isset($_GET['q']) )
-        {
-            $where  = "WHERE `name` LIKE '%" . $_GET['q'] . "%'";
-            $where .= " OR `lastname` LIKE '%" . $_GET['q'] . "%'";
-            $where .= " OR `passport` LIKE '%" . $_GET['q'] . "%'";
-            $where .= " OR `email` LIKE '%" . $_GET['q'] . "%'";
-            $where .= " OR `phone` LIKE '%" . $_GET['q'] . "%'";
-            $where .= " OR `company` LIKE '%" . $_GET['q'] . "%'";
+        $query = null;
+        
+        foreach ( $_POST['info'] as $id){
+            $query = "INSERT INTO `price_list` (`code`, `name`, `type`, `place`, `price`, `from_date`, `to_date`, `price_double`, `price_tripled`, `occupancy`, `coin`, `coin_symbol`, `details`) SELECT `code`, `name`, `type`, `place`, `price`, `from_date`, `to_date`, `price_double`, `price_tripled`, `occupancy`, `coin`, `coin_symbol`, `details` FROM `price_list` WHERE `id`={$id};";
+            $db->query($query);
         }
 
-        $query = 'SELECT id as `value`, CONCAT(name, " ", lastname) as `text` FROM main_clients ' . $where . ' ORDER BY `id` DESC;';
-
-        $res = $db->query($query);
-        $accounts = $res->fetchAll();
-
-        foreach ($accounts as $account) {
-            $data[] = $account;
-        }
-       
-        if (!isset($data))
-             $data = "";
-
-       echo json_encode($data, JSON_PRETTY_PRINT);
+        return $query;
     }
 
 
@@ -132,13 +146,15 @@
         $offset = null;
 
         if ( @isset($_GET['data']) ) {
-            $where  = "WHERE `name` LIKE '%" . $_GET['data'] . "%'";
-            $where .= " OR `lastname` LIKE '%" . $_GET['data'] . "%'";
-            $where .= " OR `passport` LIKE '%" . $_GET['data'] . "%'";
-            $where .= " OR `email` LIKE '%" . $_GET['data'] . "%'";
-            $where .= " OR `phone` LIKE '%" . $_GET['data'] . "%'";
-            $where .= " OR `company` LIKE '%" . $_GET['data'] . "%'";
+            $where  = "WHERE `code` LIKE '%" . $_GET['data'] . "%'";
+            $where .= " OR `name` LIKE '%" . $_GET['data'] . "%'";
+            $where .= " OR `type` LIKE '%" . $_GET['data'] . "%'";
+            $where .= " OR `place` LIKE '%" . $_GET['data'] . "%'";
+            $where .= " OR `details` LIKE '%" . $_GET['data'] . "%'";
         }
+
+        if ( @isset($_GET['wh']))
+            $where = $_GET['wh'];
 
         if ( @isset ($_GET['orderBy'])) {
             $order = "ORDER by `" . $_GET['orderBy'] . "`";
@@ -148,7 +164,7 @@
             $dir = $_GET['dir'];
         }
 
-        $limit = "LIMIT " . $config['misc']['pagination'];
+        $limit = "LIMIT 50";
 
         if ( @isset($_GET['offset']) )
             $offset = "OFFSET " . ( ($_GET['offset'] - 1) * $config['misc']['pagination']);

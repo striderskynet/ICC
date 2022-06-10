@@ -94,14 +94,12 @@ function tokenize(rep_array, value){
 }
 
 function populate_data(clients_data, offset = 1, m_table, m_table_row, type='client'){
-  
   m_table[0].innerHTML = "";
 
-  
   pag_level = Math.ceil(clients_data['info'][0].total / pagination);
   
   show_total(clients_data['info'][0].total, pagination, offset);
-  generate_pagination(pag_level, offset);
+  generate_pagination(pag_level, offset, type);
  
   delete clients_data.info;
 
@@ -125,8 +123,6 @@ function populate_data(clients_data, offset = 1, m_table, m_table_row, type='cli
   Object.keys(clients_data).forEach(key => {
           const new_row = document.createElement('tr');
           
-          
-         
           switch (type){
               case "client":
                 new_row.id = "data_u" + $q;
@@ -163,9 +159,10 @@ function populate_data(clients_data, offset = 1, m_table, m_table_row, type='cli
           m_table.append(new_row);
 
           m_table = $("#main-table-body");
-          console.log("Populating database");
+          
           $q++;
   });
+  console.log("Populating database");
 }
 
 function show_client_modal(id){
@@ -238,10 +235,10 @@ function status_type(status){
     
 
 //Generate the pagination based of total pages, and the offset
-function generate_pagination(total_pages, offset)
+function generate_pagination(total_pages, offset, type = "client")
 {
     // Getting the pagination start DOM
-    pag_nav = $("#main_client_pagination");
+    pag_nav = $("#main_" + type + "_pagination");
     pag_nav.empty();
 
     // Creating pagination "BACK" element
@@ -319,12 +316,21 @@ function generate_pagination(total_pages, offset)
 }
 
 // get the data depending the offset of the table
-function pag_offset(offset)
+function pag_offset(offset, type='client')
 {
+    
     let search_value = $('#main_search')[0].value;
 
-    $.get( "./api/?clients&list&pagination=" + pagination + "&offset=" + offset + "&data=" + search_value, function( data ) {
-        populate_data(JSON.parse(data), offset, main_table, main_table_row); 
+    $.get( "./api/?" + position['var'] + "&list&pagination=" + pagination + "&offset=" + offset + "&data=" + search_value, function( data ) {
+        
+        switch(position['var']){
+            default:     populate_data(JSON.parse(data), offset, main_table, main_table_row); break;
+            case "prices":
+                         populate_data(JSON.parse(data), offset, prices_table, prices_table_row, 'prices'); 
+                         editable_table_reload();
+                         break;
+        }
+       
     });
 
 }
@@ -421,6 +427,35 @@ function reload_autocomplete(){
     });    
 }
 
+main_alert = $(".main-alert");
+alert_elem = $(".main-alert .main-alert-element");
+alert_counter = $(".alert-counter");
+
+var new_alert = alert_elem.html();
+
+var alert_count = 0;
+alert_elem.html("");
+function alert(type = "normal", color, value, date){
+    var data = [];
+    var n_alert;
+    
+    data['type'] = type;
+    data['value'] = value;
+    data['date'] = date;
+    data['color'] = color;
+
+    alert_elem.html(alert_elem.html() + tokenize(data, new_alert));
+
+    alert_count++;
+    alert_counter.html(alert_count);
+
+    if (alert_count > 0 )
+        alert_counter.show();
+    else
+        alert_counter.hide();
+
+   // console.log( alert_elem.html() );
+}
 // ACTIONS //
 
 // On Logout Button Click just LOGOUT and Reload
@@ -568,8 +603,12 @@ $(document).ready(function() {
 
 });
 
-// Check if we are up to date
-$.get("https://api.github.com/repos/striderskynet/ICC/branches/master", function async ( data ) {
+$.ajax({
+        url: "https://api.github.com/repos/striderskynet/ICC/branches/master",
+        headers: {"Authorization": "token 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"}
+    }
+).done(function (data) {
+
     var com = [];
         com['message'] = data.commit.commit.message;
         com['user'] = data.commit.commit.committer.name
@@ -579,6 +618,5 @@ $.get("https://api.github.com/repos/striderskynet/ICC/branches/master", function
         var date_last = new Date(last_commit);
 
     if (date_commit > date_last)
-        show_alert("danger",`Existe una nueva actualizacion del sistema con fecha de ${date_commit.toLocaleDateString("en-US")} por "<strong>${com['user']}</strong>" con el mensaje "${com['message']}"`);
+        alert("exclamation", "danger", `Existe una nueva actualizacion del sistema con fecha de <strong>${date_commit.toLocaleDateString("en-US")}</strong> por "<strong>${com['user']}</strong>" con el mensaje "${com['message']}"`, date_commit.toLocaleDateString("en-US"));
 });
-
