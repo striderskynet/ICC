@@ -42,8 +42,10 @@
             }
         }
         //echo str_replace("\n", "<br>\n", htmlentities(htmlspecialchars($logs)));
-
+        
         function parse_logs($log){
+            
+            echo "<li class=\"list-group-item\"><div class=\"row align-items-center no-gutters\">";
             if (array_key_exists(2, $log))
             {
                 $type = trim($log[1]);
@@ -54,53 +56,20 @@
                     $value = str_replace("(", "(<span class='important'>", $value);
                     $value = str_replace(")", "</span>)", $value);
                 }
-                echo "<div class='log log_" . strtolower($type) . "'><span class='date'>" . trim($log[0]) . "</span>\t\t|\t\t <span class='type'>" . $type . "</span>\t\t|\t\t <span class='value'>" . $value . "</span></div>\n";
+                echo "<div class='log log_" . strtolower($type) . "'><span class=ur'>" . trim($log[0]) . "</span>\t\t|\t\t <span class='type'>" . $type . "</span>\t\t|\t\t <span class='value'>" . $value . "</span></div>\n";
             } else {
                 echo "<div class='log log_default'>" . $log[0] . "</div>\n";
             }
+            echo "</div></li>";
         }
+
+        $data['logs_directory'] = dir_logs($log_dir);
+
+        $theme = file_get_contents(_LOCAL . "/core/themes/html/" . $position[2] . ".theme.html");
+
+        $theme = tokenize($data, $theme);
+
     ?>
-<style>
-
-    .log_wrapper .card{
-        margin: 0px 50px;
-    }
-  
-    .log_select{
-        display: block;
-        margin: 20px;
-        text-align: right;
-        width: 90%;
-    }
-
-    .log_select .form-select
-    {
-        margin-left: auto;
-        display: block;
-        max-width: 500px;
-    }
-</style>
-<div class='log_select' >
-    <select id='logs_select' class="form-select" onchange='load_logs(this.value)'>
-<?php echo dir_logs($log_dir) ?>
-    </select>
-</div>
-<div id='log_wrapper' class='log_wrapper'>
-        <div class="card shadow">
-            <div class="card-header py-3">
-                <h6 id="file_name" class="text-primary font-weight-bold m-0">{file_name}</h6>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <div class="row align-items-center no-gutters">
-                        <div class="col mr-2">
-                            <h6 class="mb-0"><strong>Lunch meeting</strong></h6>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
 <script>
     let pagination = <?php echo $config['misc']['pagination'] ?>;
     let position = [];
@@ -110,21 +79,5 @@
     position['var'] = '<?php echo $position[2] ?>';
 
     var clients_data_api = null;
-
-    function load_logs(log_file)
-    {
-        $.ajax({
-                    url: "core/themes/logs.php?log=" + log_file,
-                    cache: false
-                })
-                    .done(function( result ) {
-                        $("#log_wrapper").html(result);
-                    //$("#log_wrapper").html(result);
-                   // insertHTML("log_wrapper", result);
-                });
-
-        console.log ( "Loading logs file: " + log_file);
-    }
-
-    load_logs(document.getElementById('logs_select').value);
 </script>
+<?php echo $theme; ?>
