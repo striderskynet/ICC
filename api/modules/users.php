@@ -6,14 +6,8 @@ switch (array_keys($_GET)[1]) {
     case "add":
         echo users_add();
         break;
-    case "install":
-        echo users_install();
-        break;
     case "verify":
         echo users_verify();
-        break;
-    case "login":
-        echo users_login();
         break;
     case "logout":
         echo users_logout();
@@ -24,11 +18,6 @@ function users_total()
 {
     global $db;
     return $db->query('SELECT * FROM general_users')->numRows();
-}
-
-function users_install()
-{
-    return users_add();
 }
 
 function users_add()
@@ -50,14 +39,6 @@ function users_add()
     else return false;
 }
 
-function users_login()
-{
-    $_SESSION['USERID'] = $_POST['user'];
-    $_SESSION['USER_ROLE'] = $_POST['role'];
-
-    return print_r($_SESSION);
-}
-
 function users_logout()
 {
     session_destroy();
@@ -72,8 +53,17 @@ function users_verify()
 
     $query = "SELECT * FROM general_users WHERE `username`='{$log_user}' AND `password`='{$log_pass}'";
 
-    debug(4, $query);
+    debug(5, $query);
     $result = $db->query($query)->fetchArray();
 
-    return json_encode($result);
+    if ( count ($result) > 0 )
+    {
+        $_SESSION['USERID'] = $result['username'];
+        $_SESSION['SSID'] = $result['username'] . date("dd/mm/yy/");
+        $_SESSION['USER_ROLE'] = $result['role'];
+
+        return "{\"login\":\"true\"}\n";
+    } else { return "{\"login\":\"false\"}\n"; }
+
+    //return json_encode($result);
 }

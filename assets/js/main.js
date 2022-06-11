@@ -200,7 +200,7 @@ function nl2br (str, is_xhtml) {
     var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
     $res = (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
 
-    if ( $res.length > 30) $res = $res.substring(0, 30) + "...";
+    if ( $res.length > 30) $res = $res.substring(0, 20) + "...";
 
     return $res;
 }
@@ -605,7 +605,7 @@ $(document).ready(function() {
 
 $.ajax({
         url: "https://api.github.com/repos/striderskynet/ICC/branches/master",
-        headers: {"Authorization": "token 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"}
+       //headers: {"Authorization": "token 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"}
     }
 ).done(function (data) {
 

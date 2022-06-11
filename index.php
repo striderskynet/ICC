@@ -28,7 +28,7 @@ if (isset($_SESSION['USERID'])) {
   }
 } else {
   // Check if this is a new Install and Execute Install.php
-  if (api("users", "total") == 1){
+  if ($_INSTALLED == true){
     include_once(_LOCAL . "core/themes/login.php");
   } else {
     if ( file_exists(_LOCAL . "core/themes/install.php") )

@@ -24,22 +24,9 @@ $("#login-form").submit(function(e) {
         }
     }).done(function( msg ) {
 
-        if ( msg.length > 3)
+
+        if ( msg.includes("true") )
         {
-            msg_res = JSON.parse(msg);
-
-            $.ajax({
-                method: "POST",
-                url: "./api/?users&login",
-                // Passing all the variables
-                data: { 
-                    user: log_user,
-                    role: msg_res.role
-                }}).done(function( msg_login ) {
-                    console.log(msg_login);
-                });
-
-
             document.location = "./";
         } else {
             show_alert("danger", "Usuario o Contrasena incorrecto");
