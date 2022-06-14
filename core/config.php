@@ -7,7 +7,7 @@
 
 
     $config['title'] = "Endirecto";
-    $_ADDRESS = "http://clients.technomobile.lan:85/";
+    $_ADDRESS = "http://192.168.10.2:85/";
     $_INSTALLED = true;
 
 

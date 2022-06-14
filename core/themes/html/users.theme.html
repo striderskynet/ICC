@@ -70,9 +70,7 @@
     </div>
 </div>
 <style>
-body{
-    background:#eee;
-}
+
 
 .single_advisor_profile {
     position: relative;
@@ -90,12 +88,13 @@ body{
     width: 315px;
     height: 315px;
     padding: 15px 15px 0px 15px;
+    
 
 }
 
 
 .single_advisor_profile:hover{
-    cursor: pointer; 
+    cursor: pointer;
     /* filter: grayscale(0); */
 }   
 
@@ -246,12 +245,18 @@ body{
             <p class="designation">{position}</p>
             <br>
             <div class="main-users-buttons-{id} hide">
-                <span data-tooltip="Cambiar la contrase&ntilde;a">
-                    <button onclick="user_modify_password({id});" class="btn btn-success">
-                        <i class="fa fa-asterisk" aria-hidden="true"></i>
-                    </button>
-                </span>
-                <span data-tooltip="Eliminar usuario"><button onclick="user_delete({id});" class="btn btn-danger"><i class="fa fa-minus-circle" aria-hidden="true"></i></button></span>
+                <form>
+                    <div class="input-group" style="display: inside-block;">
+                        <input onblur="this.value=''" id="user_pass_change-{id}" class="form-control small hide no-eye" type="password" autocomplete="new-password" placeholder="Contraseña">
+                        <input class='hide' type="text" name="username" autocomplete="username" value="a_b">
+                <span style="margin-left: auto !important; margin-right: 0 !important" data-tooltip="Cambiar la contrase&ntilde;a">
+                        <button id='user-button-mod-{id}' onclick="user_password({id});" class="form-control btn btn-success" type="button"><i class="fas fa-asterisk"></i></button>
+                    </span>
+                    <span class='ms-2' data-tooltip="Eliminar usuario">
+                        <button onclick="user_delete({id});" class="btn btn-danger"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
+                    </span>
+                </div>
+            </form>
             </div>
           </div>
         </div>

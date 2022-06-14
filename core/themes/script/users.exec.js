@@ -97,9 +97,14 @@ function populateAvatars(gender = "male"){
         input.after(label);
         label.appendChild(tooltip);
         tooltip.appendChild(image);
-
     }
 
+    $('form[name="user-password"]').submit(function(e){
+        e.preventDefault();
+        
+        let userID = this.id;
+        console.log(userID);
+    });
     //<input class='avatar-check' type="checkbox" name="avatar" id="avatar" /><label for="avatar"><img src='./assets/images/default-avatar.png' width="50"></label>
 }
 
@@ -108,7 +113,6 @@ $("select[name='apf_gender'").change(function () {
 });
 
 function showUserButtons(userID){
-    console.log(userID);
     $(".main-users-buttons-" + userID ).slideToggle();
 }
 
@@ -126,4 +130,32 @@ function user_delete(userID){
     }
 };
 
-populateAvatars("male");
+function user_password(userID){
+    var passInput = $(`#user_pass_change-${userID}`);
+    var button = $("#user-button-mod-" + userID);
+    
+    
+    passInput.fadeToggle();
+    button.toggleClass("no-left-round");
+
+    if ( passInput.val().length >= 3) {
+    console.log("Changing password to: " + passInput.val());
+       
+        if (confirm('Realmente desea cambiar la contraseña al usuario: ' + userID)) {
+            $.get( "./api/?users&password&id=" + userID + "&pass=" + passInput.val(), function( data ) {
+            });
+
+            show_alert("info", `Contraseña cambiada al usuario: ${userID}`);
+            
+            if ( session_id === userID ){
+                $("#logout_button").click();
+            }
+        }
+    }
+
+};
+
+$(function () {
+    populateAvatars("male");
+    $('[data-toggle="popover"]').popover()
+})

@@ -21,10 +21,9 @@
 
 <script type="text/javascript" src="./core/script.php?js=main"></script>
 <?php
-  if ( $theme_script ) echo ( "<script type=\"text/javascript\" src=\"./core/script.php?js=$theme_script\"></script>" );
+  if ( $theme_script ) echo ( "<script type=\"text/javascript\" src=\"./core/script.php?js=$theme_script\" ></script>" );
 ?>
 <script>
-  const last_commit = "<?php echo _COMMIT?>";
   set_position(<?php echo @$login ?>);
 </script>
 </html>

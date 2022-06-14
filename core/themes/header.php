@@ -25,7 +25,9 @@
   <link href="./assets/css/font.google.css" rel="stylesheet"/>
   
 
-  
+  <script>
+    const last_commit = "<?php echo _COMMIT?>";
+  </script>
   <script type="text/javascript" src="./assets/js/jquery.min.js"></script>
   <script type="text/javascript" src="./assets/js/popper.min.js"></script>
   <script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
@@ -136,7 +138,13 @@
                                 <?php echo $user_avatar?>
                             </span>
                         </a>
-                        <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in mt-5"><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Perfil</a><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Ajustes</a><a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logs</a>
+                        <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in mt-5">
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>
+                                &nbsp;Perfil</a>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>
+                                &nbsp;Ajustes</a>
                             <div class="dropdown-divider"></div><a id="logout_button" class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
                         </div>
                     </div>

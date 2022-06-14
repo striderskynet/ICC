@@ -49,7 +49,7 @@
             <tbody id='main-table-body'>
             <!-- Data ROW -->
                 <tr class='hide' id='data-default' data-user-id="u01">
-                    <td class="align-middle"><span style='position: absolute; margin-left: 6px; margin-top: 35px;' class="badge bg-danger">{id}</span>{profile_picture}</td>
+                    <td style='width: 100px;' class="align-middle"><span class="badge badge-id bg-danger">{id_number}</span>{profile_picture}</td>
                     <td style='width: auto;' class="align-start">
                             <p class="fw-bold mb-0"><strong>{prefix}</strong> {name} {lastname}</p>
                             <p class="fw-bolder ms-2 mb-0"><a class='text-info' href='mailto:{email}'>{email}</a></p>

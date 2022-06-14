@@ -8,7 +8,7 @@
 
         switch ($_GET['js']){
             default:
-                $script = file_get_contents( "../assets/js/main.js" );
+                $script .= file_get_contents( "../assets/js/main.js" );
                 break;
             case "default":
             case "voucher":
@@ -29,7 +29,4 @@
         }
         echo $script;
     }
-
-
-
 ?>

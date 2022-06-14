@@ -18,6 +18,9 @@ switch (array_keys($_GET)[1]) {
     case "logout":
         echo users_logout();
         break;
+    case "password":
+        echo users_password();
+        break;
 }
 
 function users_total()
@@ -56,6 +59,17 @@ function users_logout()
     session_destroy();
 }
 
+function users_password(){
+    global $db;
+
+    $pass = md5($_GET['pass']);
+    $query = "UPDATE general_users SET `password` = \"$pass\" WHERE `id`='{$_GET['id']}'";
+
+    debug(1, $query);
+
+    $db->query($query);
+
+}
 function users_verify(){
     global $db;
 
@@ -73,6 +87,7 @@ function users_verify(){
         $_SESSION['SSID'] = $result['username'] . date("dd/mm/yy/");
         $_SESSION['USER_ROLE'] = $result['role'];
         $_SESSION['AVATAR'] = $result['avatar'];
+        $_SESSION['ID'] = $result['id'];
 
         return "{\"login\":\"true\"}\n";
     } else { return "{\"login\":\"false\"}\n"; }

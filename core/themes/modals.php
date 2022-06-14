@@ -13,7 +13,7 @@
                         <div class="form-group align-items-center w-100">
                             <div class="container col-md-6 text-center my-auto" id="upload_client_picture" onclick="upload_client_picture()">
                                     <i id="upload_client_icon" class="fa fa-user-circle fa-7x my-4" aria-hidden="true"></i>
-                                    <img id='upload_client_image' src="" class="hide rounded-circle shadow-5-strong">
+                                    <img id='upload_client_image' src="" class="hide rounded-circle shadow-5-strong" style='width: 150px;'>
                             </div>
                             <input class='hide' type="file" name="acf_client_picture" value="" id='upload_client_file'>
                         </div>

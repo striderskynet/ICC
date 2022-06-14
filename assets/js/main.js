@@ -132,6 +132,10 @@ function populate_data(clients_data, offset = 1, m_table, m_table_row, type='cli
                 clients_data[key].full_name = clients_data[key].prefix + " " + clients_data[key].name + " " + clients_data[key].lastname;
                 clients_data[key].country_lowercase = clients_data[key].country.toLowerCase();
                 clients_data[key].country_full = C.countries[clients_data[key].country];
+                if (clients_data[key].id.toString().length <= 2)
+                    clients_data[key].id_number = ('00' + clients_data[key].id).slice(-3);
+                else 
+                    clients_data[key].id_number = clients_data[key].id;
                 break;
               
               case "voucher":
@@ -615,6 +619,7 @@ $.ajax({
     }
 ).done(function (data) {
 
+    console.log(data);
     var com = [];
         com['message'] = data.commit.commit.message;
         com['user'] = data.commit.commit.committer.name
@@ -627,24 +632,23 @@ $.ajax({
         alert("exclamation", "danger", `Existe una nueva actualizacion del sistema con fecha de <strong>${date_commit.toLocaleDateString("en-US")}</strong> por "<strong>${com['user']}</strong>" con el mensaje "${com['message']}"`, date_commit.toLocaleDateString("en-US"));
 });
 
+$("input[type=password]").each(function(e){
+    if ($(this).hasClass("no-eye") === false){
+        var eye = document.createElement("i");
+        eye.classList.add("fa", "fa-eye", "password-eye");
+        eye.id = this.name + "-eye";
+        this.after(eye);
 
+        $("#" +  eye.id).on("mousedown mouseup", function(){
+            password = $("input[name='" + this.id.replace("-eye","").replace("#","") + "']");
 
-$("input[type=password]").each(function(){
-    var eye = document.createElement("i");
-    eye.classList.add("fa", "fa-eye", "password-eye");
-    eye.id = this.name + "-eye";
-    this.after(eye);
+        const type = password.attr('type') === 'password' ? 'text' : 'password'
+        this.classList.toggle('fa-eye-slash');
+        this.classList.toggle('text-danger');
 
-    $("#" +  eye.id).on("mousedown mouseup", function(){
-        password = $("input[name='" + this.id.replace("-eye","").replace("#","") + "']");
-
-       const type = password.attr('type') === 'password' ? 'text' : 'password'
-       this.classList.toggle('fa-eye-slash');
-       this.classList.toggle('text-danger');
-
-       password.attr('type', type);
-    })
-    
+        password.attr('type', type);
+        })
+    }
 })
 // ACTIONS //
 alert("check");

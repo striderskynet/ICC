@@ -15,6 +15,7 @@
     position['var'] = '<?php echo $position[2] ?>';
 
     var clients_data_api = null;
+    let session_id = <?php echo $_SESSION['ID'] ?>;
 </script>
 
 <?php echo $theme; ?>
