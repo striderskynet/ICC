@@ -142,7 +142,7 @@
                         </div>
                         <div class="form-group">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Detalles" id="avf_data" name="avf_data" style="height: 100px; resize:both;" required></textarea>
+                                    <textarea class="form-control p-1" placeholder="Detalles" id="avf_data" name="avf_data" style="resize:both;" required></textarea>
                                 </div>
                             
                         </div>

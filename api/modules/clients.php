@@ -138,7 +138,7 @@
             
             if ( file_exists ('../uploaded/'.  $profile_picture . ".jpg") )
                 //$account['profile_picture'] = "<img style='width: 45px;' class='rounded-circle' src='./uploaded/" . $profile_picture . ".jpg' />";
-                $account['profile_picture'] = "<img class='ps-45 rounded-circle' src='./uploaded/" . $profile_picture . ".jpg' />";
+                $account['profile_picture'] = "<img class='client-avatar rounded-circle' src='./uploaded/" . $profile_picture . ".jpg' />";
             else
                 $account['profile_picture'] = "<i class='text-dark fas fa-user-alt fa-3x'></i>";
 
@@ -167,7 +167,7 @@
         $profile_picture = md5 (  $data['passport'] .  $data['name'] .  $data['lastname'] );
                 
         if ( file_exists ('../uploaded/'.  $profile_picture . ".jpg") )
-            $data['profile_picture'] = "<img style='width: 100px;' class='rounded-circle my-5' src='./uploaded/" . $profile_picture . ".jpg' />";
+            $data['profile_picture'] = "<img class='ps-45 rounded-circle my-5' src='./uploaded/" . $profile_picture . ".jpg' />";
         else
             $data['profile_picture'] = "<i class='fas fa-user-alt fa-6x my-5'></i>";
         

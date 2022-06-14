@@ -25,6 +25,9 @@ if (isset($_SESSION['USERID'])) {
     case "prices":
       include_once(_LOCAL . "core/themes/prices.php");
       break;
+    case "users":
+      include_once(_LOCAL . "core/themes/users.php");
+      break;
   }
 } else {
   // Check if this is a new Install and Execute Install.php

@@ -1,0 +1,7 @@
+2022-06-13 16:16:36	| Data	|	INSERT INTO general_users( `username`, `password`, `role`)
+        VALUES ('manolo','d41d8cd98f00b204e9800998ecf8427e','root');
+2022-06-13 17:38:23	| Data	|	INSERT INTO general_users( `username`, `password`, `role`, `fullname`, `position`)
+        VALUES ('isabella','d41d8cd98f00b204e9800998ecf8427e','client','Isabella Olazabal','Gerente');
+2022-06-13 17:40:52	| Data	|	INSERT INTO general_users( `username`, `password`, `role`, `fullname`, `position`)
+        VALUES ('Ivet','d41d8cd98f00b204e9800998ecf8427e','user','Ivet Perez Corona','Tesorera');
+2022-06-13 18:14:57	| Logi	|	SELECT * FROM general_users WHERE `username`='nesty' AND `password`='a4fd01f750dabff701339a213c3be6af'

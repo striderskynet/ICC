@@ -7,7 +7,7 @@
                     
                 </div>
                 <div class="card-body hide bg-white">
-                    <form method='POST' action="?asd" id="add_prices_form" autocomplete="on">
+                    <form method='POST' action="?" id="add_prices_form" autocomplete="on">
                         <div class="form-group">
                             <div class="input-group">
                                     <label class="input-group-text"><i class="fas fa-hashtag"></i></label>  
@@ -23,7 +23,7 @@
                                     <input type="text" id="apf_place" placeholder="Lugar" name="apf_place" class="form-control" required/>
                             </div><br>
                             <div class="input-group">
-                                    <label class="input-group-text">Desde</i></label>  
+                                    <label class="input-group-text">Desde</label>  
                                     <input type="date" id="apf_from_date" placeholder="Fecha Desde" name="apf_from_date" class="form-control" required/>
 
                                     <label class="input-group-text">Hasta</label>  
@@ -70,7 +70,7 @@
 <main class="main_wrapper mx-auto flex-shrink-0">
     <table id='main-table' style='table-layout:fixed;' class="table table-responsive table-hover table-striped">
         <form id="elem_form" name="" action="" method="">
-            <thead class="table-dark">
+            <thead class="table-dark fs-6 text-muted">
                 <tr>
                     <th>Codigo</th>
                     <th class="hide"><input id='data-check-0' name='data_selected[]' value="0" type='checkbox' /></th>
@@ -85,7 +85,7 @@
                     <th>Ocupancia</th>
                 </tr>
             </thead>
-            <tbody id='main-table-body'>
+            <tbody id='main-table-body' style='font-size: 14px'>
             <!-- Data ROW -->
                 <tr class='hide' id='data-default'>
                     <td class="editable" data-type="code"><label>{code}</label><input class='form-control form-control-sm' type='text' value="{code}"></td>

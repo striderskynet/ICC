@@ -15,6 +15,7 @@
             case "login":
             case "panel":
             case "logs":
+            case "users":
             case "prices":
                 $script = file_get_contents( $theme_path . $_GET['js'] . ".exec.js" );
                 break;

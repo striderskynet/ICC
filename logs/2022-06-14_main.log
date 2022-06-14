@@ -1,0 +1,22 @@
+2022-06-14 00:50:29	| Data	|	INSERT INTO general_users( `username`, `password`, `role`, `fullname`, `position`, `gender`)
+        VALUES ('jose','d41d8cd98f00b204e9800998ecf8427e','admin','manolo_j@gmail.com','Jefazo,'male'');
+2022-06-14 00:53:52	| Data	|	INSERT INTO general_users( `username`, `password`, `role`, `fullname`, `position`, `gender`, `avatar`)
+        VALUES ('jose','d41d8cd98f00b204e9800998ecf8427e','user','Jose Manuel','Jefazo,'male', '');
+2022-06-14 00:54:42	| Data	|	INSERT INTO general_users( `username`, `password`, `role`, `fullname`, `position`, `gender`, `avatar`)
+        VALUES ('Jose123','d41d8cd98f00b204e9800998ecf8427e','root','Jose Manuel','jefazo,'male', '');
+2022-06-14 00:57:10	| Data	|	INSERT INTO general_users( `username`, `password`, `role`, `fullname`, `position`, `gender`, `avatar`)
+        VALUES ('olazabal','d41d8cd98f00b204e9800998ecf8427e','user','Jose Manuel Olaz','Jefazo,'male', 'avatar-male-3');
+2022-06-14 00:57:37	| Data	|	INSERT INTO general_users( `username`, `password`, `role`, `fullname`, `position`, `gender`, `avatar`)
+        VALUES ('olazabal','a4fd01f750dabff701339a213c3be6af','user','Jose Manuel Olaz','Jefazo,'male', 'avatar-male-3');
+2022-06-14 00:58:36	| Data	|	INSERT INTO general_users( `username`, `password`, `role`, `fullname`, `position`, `gender`, `avatar`)
+        VALUES ('olazabal','a4fd01f750dabff701339a213c3be6af','user','Jose Manuel Olaz','Jefazo', 'male', 'avatar-male-3');
+2022-06-14 01:39:07	| Warn	|	DELETE FROM general_users WHERE `id`='17'
+2022-06-14 01:39:19	| Warn	|	DELETE FROM general_users WHERE `id`='19'
+2022-06-14 01:39:21	| Warn	|	DELETE FROM general_users WHERE `id`='18'
+2022-06-14 01:43:05	| Data	|	INSERT INTO general_users( `username`, `password`, `role`, `fullname`, `position`, `gender`, `avatar`)
+        VALUES ('ivet','a4fd01f750dabff701339a213c3be6af','user','Herenia Ivet','Tesorera', 'female', 'avatar-female-3');
+2022-06-14 01:44:08	| Data	|	INSERT INTO general_users( `username`, `password`, `role`, `fullname`, `position`, `gender`, `avatar`)
+        VALUES ('isabella','a4fd01f750dabff701339a213c3be6af','admin','Isabella Olazabal','Jefa', 'female', 'avatar-female-5');
+2022-06-14 01:44:39	| Warn	|	DELETE FROM general_users WHERE `id`='22'
+2022-06-14 02:34:49	| Logi	|	SELECT * FROM general_users WHERE `username`='nesty' AND `password`='a4fd01f750dabff701339a213c3be6af'
+2022-06-14 02:45:46	| Logi	|	SELECT * FROM general_users WHERE `username`='nesty' AND `password`='a4fd01f750dabff701339a213c3be6af'

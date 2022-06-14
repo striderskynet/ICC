@@ -211,7 +211,8 @@ function show_companions(companions){
         
     if ( companions ){
             companions.forEach(val => {
-                ret += "<button onclick=\"show_client_modal(" + val.id + ")\" class=\"btn btn-dark btn-sm ms-1\" title=\"" + val.name + "\">" + val.profile_picture + "</button>";
+                ret += ` <span data-tooltip="${val.name}"><a href="#" onclick="show_client_modal(${val.id})" class="client-sidemen">${val.profile_picture}</a></span>`;
+                //ret += "<button onclick=\"show_client_modal(" + val.id + ")\" class=\"btn btn-dark btn-sm ms-1\" title=\"" + val.name + "\">" + val.profile_picture + "</button>";
                 //console.dir(val);
             });
     } else {
@@ -435,28 +436,33 @@ var new_alert = alert_elem.html();
 
 var alert_count = 0;
 alert_elem.html("");
-function alert(type = "normal", color, value, date){
+
+function alert(type = "normal", color = "default", value = "default", date = "default"){
     var data = [];
-    var n_alert;
     
-    data['type'] = type;
-    data['value'] = value;
-    data['date'] = date;
-    data['color'] = color;
-
-    alert_elem.html(alert_elem.html() + tokenize(data, new_alert));
-
-    alert_count++;
-    alert_counter.html(alert_count);
-
-    if (alert_count > 0 )
-        alert_counter.show();
-    else
-        alert_counter.hide();
+    if ( type === "check" ){
+        if ( alert_count > 0)
+            alert_elem.html("<a class=\"dropdown-item d-flex align-items-center\" href=\"#\">No hay ninguna alerta</a>");
+    } else {
+        data['type'] = type;
+        data['value'] = value;
+        data['date'] = date;
+        data['color'] = color;
+    
+        alert_elem.html(alert_elem.html() + tokenize(data, new_alert));
+    
+        alert_count++;
+        alert_counter.html(alert_count);
+    
+        if (alert_count > 0 )
+            alert_counter.show();
+        else
+            alert_counter.hide();
+    }
 
    // console.log( alert_elem.html() );
 }
-// ACTIONS //
+
 
 // On Logout Button Click just LOGOUT and Reload
 $("#logout_button").click(function() {
@@ -620,3 +626,25 @@ $.ajax({
     if (date_commit > date_last)
         alert("exclamation", "danger", `Existe una nueva actualizacion del sistema con fecha de <strong>${date_commit.toLocaleDateString("en-US")}</strong> por "<strong>${com['user']}</strong>" con el mensaje "${com['message']}"`, date_commit.toLocaleDateString("en-US"));
 });
+
+
+
+$("input[type=password]").each(function(){
+    var eye = document.createElement("i");
+    eye.classList.add("fa", "fa-eye", "password-eye");
+    eye.id = this.name + "-eye";
+    this.after(eye);
+
+    $("#" +  eye.id).on("mousedown mouseup", function(){
+        password = $("input[name='" + this.id.replace("-eye","").replace("#","") + "']");
+
+       const type = password.attr('type') === 'password' ? 'text' : 'password'
+       this.classList.toggle('fa-eye-slash');
+       this.classList.toggle('text-danger');
+
+       password.attr('type', type);
+    })
+    
+})
+// ACTIONS //
+alert("check");
