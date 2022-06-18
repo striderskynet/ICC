@@ -1,7 +1,11 @@
 var clientModalShow = true;
-var add_voucher_modal = new bootstrap.Modal(document.getElementById('add_voucher_modal'));
-var clientModalLabel = new bootstrap.Modal(document.getElementById('clientModal'));
-var clientModalBody = document.getElementById('clientModalBody');
+var add_voucher_modal = new bootstrap.Modal(
+  document.getElementById("add_voucher_modal")
+);
+var clientModalLabel = new bootstrap.Modal(
+  document.getElementById("clientModal")
+);
+var clientModalBody = document.getElementById("clientModalBody");
 
 const voucher_default_row = $("#data-default");
 var voucher_main_table = $("#main-table-body");
@@ -32,14 +36,13 @@ $("#main_search,#main_search_button").prop(
   "Deshabilitada la busqueda hasta nueva version"
 );
 
-
 // Execute when "DEL Voucher" button is pressed
 function button_voucher_del(button) {
   //$("#button_user_del").click(function(){
   clientModalShow = false;
 
   // Getting voucherID from DataSet
-  var voucher_id = button.dataset.voucherId
+  var voucher_id = button.dataset.voucherId;
   let url_del_voucher = "./api/?vouchers&delete&id=" + voucher_id;
 
   // Executing the API for VOUCHER DELETION
@@ -71,42 +74,32 @@ function button_voucher_print(element) {
   window.open("./api/voucher.php?id=" + voucher_id, "_blank").focus();
 }
 
+/*
+$('#main_search').on("input propertychange", function () { 
 
-$('.priceAutoComplete').autoComplete({
-  resolver: 'custom',
-  minLength:1,
-  events: {
-      search: function (qry, callback) {
-          // let's do a custom ajax call
-          $.ajax(
-              './api/?prices&list_min',
-              {
-                  data: { 'q': qry}
-              }
-          ).done(function (res) {
-              callback(JSON.parse(res))
+  // only if value.length is bigger than the min_lenght
+  if (this.value.length >= 3 )
+  {
+      let search_value = this.value;
+      console.log ( `Searching for '${search_value}'`);
+
+      $data = "";
+      // Executing API request for clients and especific search value
+      $.get( "./api/?vouchers&list&data=" + search_value, function( data ) {
+        console.log(data);
+          // IF the API requst is not empty
+          if ( data.toString() != null )
+              populate_data(JSON.parse(data),1 , voucher_main_table, voucher_default_row, "voucher"); 
+      });
+  } else {
+      // if value.lenght is shorter that min_lenght, show all results
+      if ( this.value == "" )
+      {
+          $.get( "./api/?vouchers&list", function( data ) {
+            populate_data(JSON.parse(data),1 , voucher_main_table, voucher_default_row, "voucher"); 
           });
       }
+      
   }
-});
 
-$('.priceAutoComplete').on('autocomplete.select', function (evt, item) {
-  const element = this;
-  const pr_text = $("#avf_data");
-  const in_date = $("#avf_inDate");
-  const out_date = $("#avf_outDate");
-
-  $.get( `./api/?prices&list&wh=WHERE+id+=+${item.value}`, function( data ) {
-    data = JSON.parse(data);
-    element.value = data[0].code;
-
-    console.dir(data);
-    pr_text.text(`${data[0].name} (${data[0].place})\n\t${data[0].type}`);
-    in_date.prop("min", data[0].from_date );
-    in_date.prop("max", data[0].to_date );
-    out_date.prop("min", data[0].from_date );
-    out_date.prop("max", data[0].to_date );
-});
-  
-  //select_name("#" + this.id, item.text, item.value);
-});   
+});*/

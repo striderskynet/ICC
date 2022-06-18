@@ -1,124 +1,167 @@
 <div class="container-fluid">
-    <div class="row">
-        <div>
-            <div class="card shadow mb-4 ">
-                <div class="card-header cursor-pointer d-flex justify-content-between align-items-center">
-                    <h6 class="text-primary font-weight-bold m-0">Agregar Elementos</h6>
-                    
-                </div>
-                <div class="card-body hide bg-white">
-                    <form method='POST' action="?" id="add_prices_form" autocomplete="on">
-                        <div class="form-group">
-                            <div class="input-group">
-                                    <label class="input-group-text"><i class="fas fa-hashtag"></i></label>  
-                                    <input type="text" id="apf_code" placeholder="Codigo" name="apf_code" class="form-control" required/>
-                                    
-                                    <label class="input-group-text ms-3"><i class="fas fa-building"></i></label>  
-                                    <input type="text" id="apf_name" placeholder="Nombre" name="apf_name" class="form-control" required/>
-
-                                    <label class="input-group-text ms-3"><i class="fas fa-building"></i></label>  
-                                    <input type="text" id="apf_type" placeholder="Tipo" name="apf_type" class="form-control" required/>
-
-                                    <label class="input-group-text ms-3"><i class="fas fa-building"></i></label>  
-                                    <input type="text" id="apf_place" placeholder="Lugar" name="apf_place" class="form-control" required/>
-                            </div><br>
-                            <div class="input-group">
-                                    <label class="input-group-text">Desde</label>  
-                                    <input type="date" id="apf_from_date" placeholder="Fecha Desde" name="apf_from_date" class="form-control" required/>
-
-                                    <label class="input-group-text">Hasta</label>  
-                                    <input type="date" id="apf_to_date" placeholder="Fecha Hasta" name="apf_to_date" class="form-control" required/>
-                                    
-                                <div class="d-flex ms-3">
-                                    <div class="input-group">
-                                        <label class="input-group-text"><i class="fas fa-dollar"></i></label>  
-                                        <input type="number" id="apf_price" placeholder="Precio" name="apf_price" class="form-control" required/>
-
-                                        <label class="input-group-text"><i class="fas fa-dollar"></i></label>  
-                                        <input type="number" id="apf_price_doubled" placeholder="Precio Doble" name="apf_price_doubled" class="form-control" />
-
-                                        <label class="input-group-text"><i class="fas fa-dollar"></i></label>  
-                                        <input type="number" id="apf_price_tripled" placeholder="Precio Triple" name="apf_price_tripled" class="form-control" />
-
-                                        <label class="input-group-text ms-3"><i class="fas fa-dollar"></i></label>  
-                                        <input type="text" id="apf_coin" placeholder="Moneda" name="apf_coin" class="form-control" required/>
-                                        
-                                        <label class="input-group-text">Simbolo</label>  
-                                        <input style='max-width: 60px;' type="text" id="apf_coin_symbol" placeholder="Simbolo" name="apf_coin_symbol" class="form-control" value="$" required/>
-                                    </div>
-                                </div>
-                            </div><br>
-                            <div class="input-group">
-                                <label class="input-group-text"><i class="fas fa-dollar"></i></label>  
-                                <input type="text" id="apf_occupancy" placeholder="Ocupancia" name="apf_occupancy" class="form-control" />
-                                <label class="input-group-text"><i class="fas fa-dollar"></i></label>  
-                                <input type="text" id="apf_details" placeholder="Detalles" name="apf_details" class="form-control" />
-                                
-                            </div><br>
-                            <div class="input-group d-flex justify-content-end">
-                                <input type="button" id='apf_clear_button' class="btn btn-secondary" value="Cancelar">
-                                <input type="submit" class="btn btn-primary" value="Agregar">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+  <div class="row">
+    <div>
+      <div class="card shadow mb-4">
+        <div class="card-header cursor-pointer d-flex justify-content-between align-items-center">
+          <h6 class="text-primary font-weight-bold m-0">Agregar Elementos</h6>
         </div>
+        <div class="card-body hide bg-white">
+          <form method="POST" action="?" id="add_prices_form" autocomplete="on">
+            <div class="form-group">
+              <div class="input-group">
+                <label class="input-group-text"><i class="fas fa-hashtag"></i></label>
+                <input type="text" id="apf_code" placeholder="Codigo" name="apf_code" class="form-control" required />
+
+                <label class="input-group-text ms-3"><i class="fas fa-building"></i></label>
+                <input type="text" id="apf_name" placeholder="Nombre del Hotel" name="apf_name" class="form-control" required />
+
+                <label class="input-group-text ms-3"><i class="fas fa-bed"></i></label>
+                <input type="text" id="apf_type" placeholder="Categoria/Habitacion" name="apf_type" class="form-control" required />
+
+                <label class="input-group-text ms-3"><i class="fas fa-location-arrow"></i></label>
+                <input type="text" id="apf_place" placeholder="Lugar" name="apf_place" class="form-control" required />
+              </div>
+              <br />
+              <div class="input-group">
+                <label class="input-group-text">Desde</label>
+                <input type="date" id="apf_from_date" placeholder="Fecha Desde" name="apf_from_date" class="form-control" required />
+
+                <label class="input-group-text">Hasta</label>
+                <input type="date" id="apf_to_date" placeholder="Fecha Hasta" name="apf_to_date" class="form-control" required />
+                <label class="input-group-text ms-3"><i class="fa fa-cloud" aria-hidden="true"></i></label>
+                <input type="text" id="apf_season" placeholder="Temporada" name="apf_season" class="form-control" required />
+                <label class="input-group-text"><i class="fas fa-list"></i></label>
+                <input type="text" id="apf_plan" placeholder="Plan" name="apf_plan" class="form-control" required />
+              </div>
+              <br />
+              <label>Precio Neto</label>
+              <div class="input-group">
+                <div class="input-group">
+                  <label class="input-group-text"><i class="fas fa-dollar"></i></label>
+                  <input type="number" id="apf_price_pax_double" placeholder="Precio por Pax en Doble" name="apf_price_pax_double" class="form-control" required />
+                  <label class="input-group-text"><i class="fas fa-dollar"></i></label>
+                  <input type="number" id="apf_price_simple" placeholder="Suplemento Sencilla" name="apf_price_simple" class="form-control" />
+
+                  <label class="input-group-text"><i class="fas fa-dollar"></i></label>
+                  <input type="number" id="apf_price_tripled" placeholder="Suplemento Tercer Pax" name="apf_price_tripled" class="form-control" />
+
+                  <label class="input-group-text"><i class="fas fa-utensils"></i></label>
+                  <input type="number" id="apf_price_dinner" placeholder="Suplemento de Cena" name="apf_price_dinner" class="form-control" />
+                </div>
+              </div>
+              <br />
+              <label>Precio de Venta</label>
+              <div class="input-group">
+                <div class="input-group">
+                  <label class="input-group-text"><i class="fas fa-dollar"></i></label>
+                  <input type="number" id="apf_hab_doble" placeholder="Habitacion doble" name="apf_hab_doble" class="form-control" required />
+                  <label class="input-group-text"><i class="fas fa-dollar"></i></label>
+                  <input type="number" id="apf_hab_simple" placeholder="Habitacion Sencilla" name="apf_hab_simple" class="form-control" />
+
+                  <label class="input-group-text"><i class="fas fa-dollar"></i></label>
+                  <input type="number" id="apf_hab_tripled" placeholder="Habitacion triple" name="apf_hab_tripled" class="form-control" />
+
+                  <label class="input-group-text ms-3"><i class="fas fa-dollar"></i></label>
+                  <input type="text" id="apf_offert" placeholder="Oferta" name="apf_offert" class="form-control" required />
+                  <label class="input-group-text">Validez</label>
+                  <input type="text" id="apf_offert_validity" placeholder="Validez de la Oferta" name="apf_offert_validity" class="form-control" required />
+                </div>
+              </div>
+              <br />
+              <div class="input-group">
+                <label class="input-group-text"><i class="fas fa-calendar"></i></label>
+                <input type="date" id="apf_offert_from" placeholder="Oferta desde" name="apf_offert_from" class="form-control" />
+                <label class="input-group-text"><i class="fas fa-calendar"></i></label>
+                <input type="date" id="apf_offert_to" placeholder="Oferta hasta" name="apf_offert_to" class="form-control" />
+                <label class="input-group-text"><i class="fas fa-building"></i></label>
+                <input type="text" id="apf_provider" placeholder="Proveedor" name="apf_provider" class="form-control" />
+                <label class="input-group-text ms-3"><i class="fas fa-child"></i></label>
+                <input type="text" id="apf_kids_policy" placeholder="Politica de niños" name="apf_kids_policy" class="form-control" required />
+                <label class="input-group-text"><i class="fa fa-bed" aria-hidden="true"></i></label>
+                <input type="text" id="apf_room_vacancy" placeholder="Capacidad de Habitacion" name="apf_room_vacancy" class="form-control" required />
+              </div>
+              <br />
+
+              <div class="input-group d-flex justify-content-end">
+                <input type="button" id="apf_import" class="btn btn-success" value="Importar tabla" />
+                <input type="button" id="apf_clear_button" class="btn btn-secondary" value="Cancelar" />
+                <input type="submit" class="btn btn-primary" value="Agregar" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <main class="main_wrapper mx-auto flex-shrink-0">
-    <table id='main-table' style='table-layout:fixed;' class="table table-responsive table-hover table-striped">
-        <form id="elem_form" name="" action="" method="">
-            <thead class="table-dark fs-6 text-muted">
-                <tr>
-                    <th>Codigo</th>
-                    <th class="hide"><input id='data-check-0' name='data_selected[]' value="0" type='checkbox' /></th>
-                    <th>Nombre</th>
-                    <th>Tipo</th>
-                    <th>Lugar</th>
-                    <th>Desde / Hasta</th>
-                    <th>Precio</th>
-                    <th>Precio Doble</th>
-                    <th>Precio Triple</th>
-                    <th>Moneda</th>
-                    <th>Ocupancia</th>
-                </tr>
-            </thead>
-            <tbody id='main-table-body' style='font-size: 14px'>
-            <!-- Data ROW -->
-                <tr class='hide' id='data-default'>
-                    <td class="editable" data-type="code"><label>{code}</label><input class='form-control form-control-sm' type='text' value="{code}"></td>
-                    <td class="hide"><input id='data-check-{id}' name='data_selected[]' value="0" type='checkbox' /></td>
-                    <td class="editable" data-type="name"><label>{name}</label><input class='form-control form-control-sm' type='text' value="{name}"></td>
-                    <td class="editable" data-type="type"><label>{type}</label><input class='form-control form-control-sm' type='text' value="{type}"></td>
-                    <td class="editable" data-type="place"><label>{place}</label><input class='form-control form-control-sm' type='text' value="{place}"></td>
-                    <td>{from_date} / {to_date}</td>
-                    <td>{price} {coin_symbol}</td>
-                    <td>{price_double} {coin_symbol}</td>
-                    <td>{price_tripled} {coin_symbol}</td>
-                    <td>{coin}</td>
-                    <td>{occupancy}</td>
-                </tr>
-            </tbody>
-        </form>
-        </table>
+  <table id="main-table" class="table table-responsive">
+    <form id="elem_form" name="" action="" method="">
+      <thead class="table-dark fs-6 text-muted">
+        <tr>
+          <th>
+            <span data-tooltip-location="right" data-tooltip="Shift+Click para invertir la seleccion"><input id="data-check-all" name="" value="0" type="checkbox" /></span>
+          </th>
+          <th>Codigo</th>
+          <th>Nombre</th>
+          <th>Tipo / Lugar</th>
+          <th>Desde / Hasta</th>
+          <th>Temporada / Plan</th>
+          <th>Doble / Sencilla / Triple / Cena</th>
+          <th>Venta Doble / Sencilla / Triple</th>
+          <th>Oferta / Validez</th>
+          <th>Desde / Hasta / Proveedor</th>
+          <th>Niños / Capacidad</th>
+        </tr>
+      </thead>
+      <tbody id="main-table-body" style="font-size: 14px">
+        <!-- Data ROW -->
+        <tr class="hide" id="data-default">
+          <td style="width: 20px">
+            <input id="data-check-{id}" name="data_selected[]" value="0" type="checkbox" />
+          </td>
+          <td class="editable align-start" data-type="code"><label>{code}</label><input type="text" value="{code}" /></td>
 
-    <button id='delete_price_button' type="button" class="btn btn-danger btn-icon-split hide">
-        <span class="icon text-white"><i class="fa fa-minus-circle" aria-hidden="true"></i></span>
-        <span class="text">Eliminar (<strong>0</strong>)</span>
+          <td class="editable" data-type="name"><label>{name}</label><input type="text" value="{name}" /></td>
+          <td class="editable" data-type="type">
+            <label>{type}</label><input class="form-control form-control-sm" type="text" value="{type}" /> / <label>{place}</label
+            ><input class="form-control form-control-sm" type="text" value="{place}" />
+          </td>
+          <td>{from_date} / {to_date}</td>
+          <td>{season} / {plan}</td>
+          <td>{price_pax_double}$ / {price_simple}$ / {price_tripled}$ / {price_dinner}$</td>
+          <td>{hab_doble}$ / {hab_simple}$ / {hab_tripled}$</td>
+          <td>{offert} / {offert_validity}</td>
+          <td>{offert_from} / {offert_to} / {provider}</td>
+          <td>{kids_policy} / {room_vacancy}</td>
+        </tr>
+      </tbody>
+    </form>
+  </table>
+  <span data-tooltip="Eliminar los listados">
+    <button id="delete_price_button" type="button" class="btn btn-danger btn-icon-split hide">
+      <span class="icon text-white"><i class="fa fa-minus-circle" aria-hidden="true"></i></span>
+      <span class="text">Eliminar (<strong>0</strong>)</span>
     </button>
-    <button id='duplicate_price_button' type="button" class="btn btn-icon-split btn-success btn-icon-split hide">
-        <span class="icon text-white"><i class="fa fa-copy" aria-hidden="true"></i></span>
-        <span class="text text-white">Duplicar (<strong>0</strong>)</span>
+  </span>
+  <span data-tooltip="Duplicar los listados">
+    <button id="duplicate_price_button" type="button" class="btn btn-icon-split btn-success btn-icon-split hide">
+      <span class="icon text-white"><i class="fa fa-copy" aria-hidden="true"></i></span>
+      <span class="text text-white">Duplicar (<strong>0</strong>)</span>
     </button>
-    
-    
+  </span>
+
+  <span data-tooltip="Copiar los datos al Clipboard">
+    <button id="copy_price_button" type="button" class="btn btn-icon-split btn-warning btn-icon-split hide">
+      <span class="icon text-white"><i class="fa fa-copy" aria-hidden="true"></i></span>
+      <span class="text text-white">Copiar (<strong>0</strong>)</span>
+    </button>
+  </span>
 </main>
 <nav aria-label="...">
-    <div class='table-label'>Mostrando <strong id='table-label-min'>0</strong>-<strong id='table-label-max'>0</strong> de un total de <strong id='table-label-total'>0</strong></div>
-    <ul id='main_prices_pagination' class="pagination pagination-circle m-3 justify-content-end">
-    </ul>
+  <div class="table-label">Mostrando <strong id="table-label-min">0</strong>-<strong id="table-label-max">0</strong> de un total de <strong id="table-label-total">0</strong></div>
+  <ul id="main_prices_pagination" class="pagination pagination-circle m-3 justify-content-end"></ul>
 </nav>
-<br><br>
-<br><br>
+<br /><br />
+<br /><br />

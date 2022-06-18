@@ -6,12 +6,14 @@
                         "fill":             true,
                         "data":             ["0","300","500","700","1200","1300","1700","1770"],
                         "backgroundColor":  "rgba(78, 115, 223, 0.2)",
+                        "tension":          "0.4",
                         "borderColor":      "rgba(78, 115, 223, 1)"
                         },
                         {"label":            "Reservas",
                         "fill":             true,
                         "data":             ["50","215","680","920","500","678","467","329"],
                         "backgroundColor":  "rgba(223, 115, 78, 0.2)",
+                        "tension":          "0.4",
                         "borderColor":      "rgba(223, 115, 78, 1)"
                         }]
             },

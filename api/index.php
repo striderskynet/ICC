@@ -14,8 +14,9 @@
     if (array_keys($_GET)[0] == "users"  && array_keys($_GET)[1] == "verify")
         require_once ($api_directory . "modules/users.php");
 
+        /*
     if ( !isset($_SESSION['USER_ROLE']) )
-        die("{Error:\":\"User not logged in, there is no client mode set}");
+        die("{Error:\":\"User not logged in, there is no client mode set}");*/
 
     switch(array_keys($_GET)[0]){
             case "users":

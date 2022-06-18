@@ -8,8 +8,8 @@ require_once(_LOCAL . "core/themes/header.php");
 
 if (isset($_SESSION['USERID'])) {
   switch (@array_keys($_GET)[0]) {
-    default:
-      include_once(_LOCAL . "core/themes/default.php");
+    case "clients":
+      include_once(_LOCAL . "core/themes/clients.php");
       require_once(_LOCAL . "core/themes/modals.php");
       break;
     case "voucher":
@@ -17,6 +17,7 @@ if (isset($_SESSION['USERID'])) {
       require_once(_LOCAL . "core/themes/modals.php");
       break;
     case "panel":
+    default:
       include_once(_LOCAL . "core/themes/panel.php");
       break;
     case "logs":
@@ -31,10 +32,10 @@ if (isset($_SESSION['USERID'])) {
   }
 } else {
   // Check if this is a new Install and Execute Install.php
-  if ($_INSTALLED == true){
+  if ($_INSTALLED == true) {
     include_once(_LOCAL . "core/themes/login.php");
   } else {
-    if ( file_exists(_LOCAL . "core/themes/install.php") )
+    if (file_exists(_LOCAL . "core/themes/install.php"))
       include_once(_LOCAL . "core/themes/install.php");
   }
 }

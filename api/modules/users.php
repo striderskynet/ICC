@@ -33,7 +33,7 @@ function users_add()
 {
     global $db;
 
-    print_r ( $_POST );
+    print_r($_POST);
     $val['user']    = $_POST['username'];
     $val['pass1']   = $_POST['password1'];
     $val['pass2']   = $_POST['password2'];
@@ -44,8 +44,7 @@ function users_add()
     $val['avatar']   = $_POST['avatar-radio'];
     $val['pass'] = md5($val['pass1']);
 
-    $query = "INSERT INTO general_users( `username`, `password`, `role`, `fullname`, `position`, `gender`, `avatar`)
-        VALUES ('{$val['user']}','{$val['pass']}','{$val['role']}','{$val['fullname']}','{$val['position']}', '{$val['gender']}', '{$val['avatar']}');";
+    $query = "INSERT INTO general_users( `username`, `password`, `role`, `fullname`, `position`, `gender`, `avatar`) VALUES ('{$val['user']}','{$val['pass']}','{$val['role']}','{$val['fullname']}','{$val['position']}', '{$val['gender']}', '{$val['avatar']}');";
 
     echo $query;
     debug(4, $query);
@@ -59,7 +58,8 @@ function users_logout()
     session_destroy();
 }
 
-function users_password(){
+function users_password()
+{
     global $db;
 
     $pass = md5($_GET['pass']);
@@ -68,9 +68,9 @@ function users_password(){
     debug(1, $query);
 
     $db->query($query);
-
 }
-function users_verify(){
+function users_verify()
+{
     global $db;
 
     $log_user = $_POST['username'];
@@ -81,8 +81,7 @@ function users_verify(){
     debug(5, $query);
     $result = $db->query($query)->fetchArray();
 
-    if ( count ($result) > 0 )
-    {
+    if (count($result) > 0) {
         $_SESSION['USERID'] = $result['username'];
         $_SESSION['SSID'] = $result['username'] . date("dd/mm/yy/");
         $_SESSION['USER_ROLE'] = $result['role'];
@@ -90,23 +89,27 @@ function users_verify(){
         $_SESSION['ID'] = $result['id'];
 
         return "{\"login\":\"true\"}\n";
-    } else { return "{\"login\":\"false\"}\n"; }
+    } else {
+        return "{\"login\":\"false\"}\n";
+    }
 
     //return json_encode($result);
 }
 
-function users_list(){
+function users_list()
+{
     global $db;
 
     $query = "SELECT *, \"hidden\" as `password` FROM general_users";
     //debug(4, $query);
-    
+
     $result = $db->query($query)->fetchAll();
 
     return json_encode($result);
 }
 
-function users_delete(){
+function users_delete()
+{
     global $db;
 
     $query = "DELETE FROM general_users WHERE `id`='{$_GET['id']}'";

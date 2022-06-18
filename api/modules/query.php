@@ -1,10 +1,9 @@
 <?php
-    $query = $_GET['query'];
+$query = (string)$_GET['query'];
 
-    try{
-        $db->query($query);
-    } catch (Exception $e) {
-        return $e->getMessage();
-    }
-
-?>
+try {
+    echo json_encode($db->query($query)->fetchArray());
+    //$db->fetchArray();
+} catch (Exception $e) {
+    return $e->getMessage();
+}

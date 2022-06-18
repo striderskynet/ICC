@@ -1,8 +1,8 @@
 <?php
-    $position = array('Usuarios', 'Listado de Usuarios', 'users');
-    $theme = file_get_contents(_LOCAL . "/core/themes/html/" . $position[2] . ".theme.html");
+$position = array('Usuarios', 'Listado de Usuarios', 'users');
+$theme = file_get_contents(_LOCAL . "/core/themes/html/" . $position[2] . ".theme.html");
 
-    $theme_script = $position[2];
+$theme_script = $position[2];
 //$clients_data = api("clients", "list");
 ?>
 
