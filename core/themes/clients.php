@@ -18,6 +18,7 @@ $theme_script = "clients";
 <main class="main_wrapper mx-auto flex-shrink-0">
     <div class='d-flex justify-content-end'>
         <?php if (_DEBUG) { ?>
+            <div class="loader generate-loader hide"></div>
             <span data-tooltip="Generar cliente de forma aleatoria (DEBUG)">
                 <button id="button_generate_client" type="button" class="btn btn-primary m-2 btn-icon-split">
                     <span class="icon text-white"><i class="fas fa-circle-plus"></i></span>

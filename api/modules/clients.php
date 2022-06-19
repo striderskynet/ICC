@@ -9,6 +9,9 @@ switch (array_keys($_GET)[1]) {
     case "add":
         echo clients_add();
         break;
+    case "gen":
+        echo clients_generate();
+        break;
     case "list":
         echo clients_list();
         break;
@@ -27,6 +30,24 @@ function clients_total()
 {
     global $db;
     return $db->query('SELECT * FROM main_clients')->numRows();
+}
+
+function clients_generate()
+{
+    global $db;
+
+    $file_name = md5($_POST['passport'] . $_POST['name'] . $_POST['lastname']);
+    $face = "https://thispersondoesnotexist.com/image";
+
+    if (@getimagesize($face))
+        file_put_contents('../uploaded/' .  $file_name . ".jpg", file_get_contents($face));
+
+    $query = "INSERT INTO `main_clients` (`prefix`, `name`, `lastname`, `passport`, `phone`, `email`, `address`, `country`, `date_added`, `company`, `status`, `observations`, `last_touch`) VALUES ('{$_POST['prefix']}', '{$_POST['name']}', '{$_POST['lastname']}', '{$_POST['passport']}', '{$_POST['phone']}', '{$_POST['email']}', '{$_POST['address']}','{$_POST['country']}', '{$_POST['date_added']}', '{$_POST['company']}', '{$_POST['status']}', '{$_POST['observations']}', '{$_POST['last_touch']}');";
+
+    debug(4, $query);
+
+    if ($db->query($query)) return true;
+    else return false;
 }
 
 function clients_add()

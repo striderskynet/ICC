@@ -1,14 +1,8 @@
 var clientModalShow = true;
-var add_client_modal = new bootstrap.Modal(
-  document.getElementById("add_client_modal")
-);
-var add_voucher_modal = new bootstrap.Modal(
-  document.getElementById("add_voucher_modal")
-);
+var add_client_modal = new bootstrap.Modal(document.getElementById("add_client_modal"));
+var add_voucher_modal = new bootstrap.Modal(document.getElementById("add_voucher_modal"));
 
-var clientModalLabel = new bootstrap.Modal(
-  document.getElementById("clientModal")
-);
+var clientModalLabel = new bootstrap.Modal(document.getElementById("clientModal"));
 var clientModalBody = document.getElementById("clientModalBody");
 
 const main_table_row = $("#data-default");
@@ -25,8 +19,7 @@ $("#main_search").on("input propertychange", function () {
     // Executing API request for clients and especific search value
     $.get("./api/?clients&list&data=" + search_value, function (data) {
       // IF the API requst is not empty
-      if (data.toString() != null)
-        populate_data(JSON.parse(data), 1, main_table, main_table_row);
+      if (data.toString() != null) populate_data(JSON.parse(data), 1, main_table, main_table_row);
     });
   } else {
     // if value.lenght is shorter that min_lenght, show all results
@@ -114,13 +107,7 @@ $("#add_client_form").submit(function (e) {
   }).done(function (msg) {
     // if result is OK then close de Modal
     add_client_modal.hide();
-    show_alert(
-      "success",
-      "Se ha agregado correctamente el usuario " +
-        form[0].acf_contact_name.value +
-        " " +
-        form[0].acf_contact_lastname.value
-    );
+    show_alert("success", "Se ha agregado correctamente el usuario " + form[0].acf_contact_name.value + " " + form[0].acf_contact_lastname.value);
 
     $("#add_client_form")[0].reset();
     // Reload the main table data
@@ -185,30 +172,16 @@ $("#button_generate_client").click(function () {
   const info = [];
   const prefix = ["Sr.", "Sra.", "Dr.", "Msc"];
   const traveling = ["Traveling", "Arriving", "Arrived", "Overseas", "Unknown"];
-  const email = [
-    "gmail.com",
-    "apple.com",
-    "yahoo.com",
-    "outlook.com",
-    "aol.com",
-  ];
-  const company = [
-    "Google",
-    "Apple",
-    "Facebook",
-    "Yahoo",
-    "Samsung",
-    "Microsoft",
-  ];
+  const email = ["gmail.com", "apple.com", "yahoo.com", "outlook.com", "aol.com"];
+  const company = ["Google", "Apple", "Facebook", "Yahoo", "Samsung", "Microsoft"];
 
   jQuery.ajax({
     //url: 'https://raw.githubusercontent.com/dominictarr/random-name/master/first-names.txt',
     url: "./debug/first-names.txt",
     success: function (data) {
       name_list = data.split("\n");
-      console.dir(name_list);
-      info["name"] =
-        name_list[Math.floor(Math.random() * name_list.length + 1)];
+      //console.dir(name_list);
+      info["name"] = name_list[Math.floor(Math.random() * name_list.length + 1)];
     },
     async: false,
   });
@@ -218,42 +191,24 @@ $("#button_generate_client").click(function () {
     url: "./debug/last-names.txt",
     success: function (data) {
       lastname_list = data.split(",");
-      info["lastname"] =
-        lastname_list[
-          Math.floor(Math.random() * lastname_list.length + 1)
-        ].trim();
+      info["lastname"] = lastname_list[Math.floor(Math.random() * lastname_list.length + 1)].trim();
     },
     async: false,
   });
 
   info["passport"] = Math.floor(Math.random() * 100000000000);
-  info["phone"] =
-    "+" +
-    (Math.floor(Math.random() * 100) + 1) +
-    " " +
-    (Math.floor(Math.random() * 10) + 1) +
-    " (" +
-    Math.floor(Math.random() * 1000) +
-    ") " +
-    Math.floor(Math.random() * 10000);
-  info["country"] = Object.keys(C.countries)[
-    Math.floor(Math.random() * Object.keys(C.countries).length)
-  ];
+  info["phone"] = "+" + (Math.floor(Math.random() * 100) + 1) + " " + (Math.floor(Math.random() * 10) + 1) + " (" + Math.floor(Math.random() * 1000) + ") " + Math.floor(Math.random() * 10000);
+  info["country"] = Object.keys(C.countries)[Math.floor(Math.random() * Object.keys(C.countries).length)];
   info["prefix"] = prefix[Math.floor(Math.random() * (prefix.length - 1 + 1))];
-  info["traveling"] =
-    traveling[Math.floor(Math.random() * (traveling.length - 1 + 1))];
-  info["email"] =
-    info["name"].substr(0, 4).toLowerCase() +
-    "_" +
-    info["lastname"].toLowerCase() +
-    "@" +
-    email[Math.floor(Math.random() * (email.length - 1 + 1))];
-  info["company"] =
-    company[Math.floor(Math.random() * (company.length - 1 + 1))];
+  info["traveling"] = traveling[Math.floor(Math.random() * (traveling.length - 1 + 1))];
+  info["email"] = info["name"].substr(0, 4).toLowerCase() + "_" + info["lastname"].toLowerCase() + "@" + email[Math.floor(Math.random() * (email.length - 1 + 1))];
+  info["company"] = company[Math.floor(Math.random() * (company.length - 1 + 1))];
+  info["date_added"] = randomDate(new Date(2021, 12, 1), new Date());
+  info["date_added"] = info["date_added"].getFullYear() + "-" + (info["date_added"].getMonth() + 1) + "-" + info["date_added"].getDate();
 
   $.ajax({
     method: "POST",
-    url: "./api/?clients&add",
+    url: "./api/?clients&gen",
     // Passing all the variables
     data: {
       name: info["name"],
@@ -263,11 +218,22 @@ $("#button_generate_client").click(function () {
       phone: info["phone"],
       email: info["email"],
       address: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      date_added: info["date_added"],
       country: info["country"],
       company: info["company"],
       status: info["traveling"],
       observations: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       last_touch: "ahora",
+    },
+    beforeSend: function () {
+      // console.dir(info);
+      $(".generate-loader").toggle();
+    },
+    success: function () {
+      $(".generate-loader").toggle();
+    },
+    error: function (e) {
+      // console.log(e);
     },
   });
 
@@ -277,6 +243,10 @@ $("#button_generate_client").click(function () {
     populate_data(JSON.parse(data), 1, main_table, main_table_row);
   });
 });
+
+function randomDate(start, end) {
+  return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}
 
 let oPost = false;
 
@@ -290,34 +260,22 @@ $("#main-table")
     }
     const oElement = e.currentTarget;
 
-    $elements = $("#main-table")
-      .children("thead")
-      .children("tr")
-      .children("th");
+    $elements = $("#main-table").children("thead").children("tr").children("th");
     $elements.each(function (el) {
       $elements[el].classList.remove("text-info");
       //$elements[el].classList.del("text-info");
     });
 
     oPost === "ASC" ? (oPost = "DESC") : (oPost = "ASC");
-    oElement.classList.contains("text-info") === false
-      ? oElement.classList.add("text-info")
-      : oElement.classList.remove("text-info");
+    oElement.classList.contains("text-info") === false ? oElement.classList.add("text-info") : oElement.classList.remove("text-info");
     oElement.dataset.orderPos = oPost;
 
     if (typeof oElement.dataset.orderId !== "undefined") {
-      $.get(
-        `./api/?clients&list&orderBy=${oElement.dataset.orderId}&dir=${oPost}`,
-        function (data) {
-          populate_data(JSON.parse(data), 1, main_table, main_table_row);
-        }
-      );
+      $.get(`./api/?clients&list&orderBy=${oElement.dataset.orderId}&dir=${oPost}`, function (data) {
+        populate_data(JSON.parse(data), 1, main_table, main_table_row);
+      });
 
-      show_alert(
-        "info",
-        `Ordenando elementos por '${oElement.dataset.orderId}' '${oPost}'`,
-        2
-      );
+      show_alert("info", `Ordenando elementos por '${oElement.dataset.orderId}' '${oPost}'`, 2);
     }
   });
 

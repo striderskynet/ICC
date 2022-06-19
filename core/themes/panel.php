@@ -4,7 +4,7 @@ $theme = file_get_contents(_LOCAL . "/core/themes/html/" . $position[2] . ".them
 
 $data['client_count'] = api("clients", "total");
 $data['reserv_count'] = api("vouchers", "total");
-$data['client_arriving'] = json_decode(api("query", "null", "query=" . urlencode("SELECT count(*) as `amount` FROM `main_clients`")))->amount;
+$data['client_arriving'] = json_decode(api("query", "null", "query=" . urlencode("SELECT count(*) as `amount` FROM `main_clients` WHERE `date_added` BETWEEN DATE_sub(now(),INTERVAL 7 DAY) AND now()")))->amount;
 
 
 //print_r($data);
@@ -26,5 +26,6 @@ $theme_script = "panel";
 
     var clients_data_api = null;
 </script>
-<script type="text/javascript" src="./assets/js/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<!--<script type="text/javascript" src="./assets/js/chart.min.js"></script>-->
 <?php echo $theme; ?>
