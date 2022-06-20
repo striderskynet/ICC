@@ -11,7 +11,6 @@ function is_active($id)
 
 function api($module, $action = null, $values = null, $decode = false)
 {
-
     global $_ADDRESS;
     $address = $_ADDRESS . "api/?" . $module . "&" . $action . "&" . $values;
 

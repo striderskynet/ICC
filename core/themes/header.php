@@ -136,8 +136,8 @@ if (isset($_SESSION['USERID'])) {
                         <div class="nav-item dropdown no-arrow">
                             <a class="float-end nav-link" aria-expanded="false" data-toggle="dropdown" href="#" style="max-width: 100px;">
                                 <span class="fw-bold me-2 text-gray-600 small"></span>
-                                <span data-tooltip-location="bottom" data-tooltip="<?php echo $user_name ?>">
-                                    <?php echo $user_avatar ?>
+                                <span data-tooltip-location="bottom" data-tooltip="<?php echo @$user_name ?>">
+                                    <?php echo @$user_avatar ?>
                                 </span>
                             </a>
                             <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in mt-5">
