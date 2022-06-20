@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/javascript');
 require_once("config.php");
 
 $theme_path = "./themes/script/";

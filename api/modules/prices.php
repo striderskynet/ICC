@@ -50,7 +50,46 @@ function price_add()
 {
     global $db;
 
+    $type = "default";
+    if (@isset($_GET['type'])) $type =  $_GET['type'];
+
+    switch ($type) {
+        default:
+            $query = prices_add_default();
+            break;
+        case "transport":
+            $query = prices_add_transport();
+            break;
+    }
     //print_r ( $_POST );
+
+    $query = str_replace("\n", "", $query);
+    debug(4, $query);
+
+    if ($db->query($query)) return true;
+    else return false;
+}
+
+function prices_add_transport()
+{
+    $query = "INSERT INTO `price_transport` (
+        `code`,
+        `from_place`,
+        `to_place`,
+        `vehicle_type`,
+        `vehicle_max_passenger`,
+        `vehicle_price`) VALUES (
+        '{$_POST['apf_code']}',
+        '{$_POST['apf_from_place']}',
+        '{$_POST['apf_to_place']}',
+        '{$_POST['apf_vehicle_type']}',
+        '{$_POST['apf_vehicle_max_passenger']}',
+        '{$_POST['apf_vehicle_price']}');";
+
+    return $query;
+}
+function prices_add_default()
+{
     $query = "INSERT INTO `price_list` (
         `code`,
         `name`,
@@ -97,11 +136,7 @@ function price_add()
         '{$_POST['apf_kids_policy']}',
         '{$_POST['apf_room_vacancy']}');";
 
-    $query = str_replace("\n", "", $query);
-    debug(4, $query);
-
-    if ($db->query($query)) return true;
-    else return false;
+    return $query;
 }
 
 function prices_delete()
@@ -149,6 +184,7 @@ function prices_list()
 {
     global $db, $config;
 
+    $table = "`price_list`";
     $where = null;
     $order = "ORDER BY `id`";
     $dir = "DESC";
@@ -163,16 +199,17 @@ function prices_list()
         $where .= " OR `provider` LIKE '%" . $_GET['data'] . "%'";
     }
 
+    if (@isset($_GET['table']))
+        $table = "`" . $_GET['table'] . "`";
+
     if (@isset($_GET['wh']))
         $where = $_GET['wh'];
 
-    if (@isset($_GET['orderBy'])) {
+    if (@isset($_GET['orderBy']))
         $order = "ORDER by `" . $_GET['orderBy'] . "`";
-    }
 
-    if (@isset($_GET['dir'])) {
+    if (@isset($_GET['dir']))
         $dir = $_GET['dir'];
-    }
 
     $limit = "LIMIT 50";
 
@@ -180,9 +217,9 @@ function prices_list()
         $offset = "OFFSET " . (($_GET['offset'] - 1) * $config['misc']['pagination']);
 
 
-    $query = "SELECT * FROM `price_list` {$where} {$order} {$dir} {$limit} {$offset};";
+    $query = "SELECT * FROM $table {$where} {$order} {$dir} {$limit} {$offset};";
     //$query = 'SELECT * FROM main_clients ' . $where . ' ' . $order . ' DESC ' . $limit .' ' . $offset .';';
-    $query_no_limit = 'SELECT count(*) as `total` FROM price_list ' . $where . ' ORDER BY `id` DESC;';
+    $query_no_limit = 'SELECT count(*) as `total` FROM ' . $table . ' ' . $where . ' ORDER BY `id` DESC;';
 
     //print_r ( $query );
     //debug(4, $query);
@@ -190,7 +227,6 @@ function prices_list()
     $accounts = $res->fetchAll();
 
     foreach ($accounts as $account) {
-
         $data[] = $account;
     }
 

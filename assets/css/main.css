@@ -33,6 +33,7 @@
 
 .table tbody tr td {
   border: 0px !important;
+  user-select: none; /* Standard */
 }
 
 .table .price-selected {
@@ -555,4 +556,13 @@ input[type="radio"]:checked + label {
 
 #voucher-chart:hover {
   cursor: pointer !important;
+}
+
+.tab-subpanel {
+  border: 1px solid #ddd;
+  border-top: 0px;
+  margin-top: -17px;
+  padding-top: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }

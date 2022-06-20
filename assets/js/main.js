@@ -97,7 +97,7 @@ function tokenize(rep_array, value) {
   return value;
 }
 
-function populate_data(clients_data, offset = 1, m_table, m_table_row, type = "client") {
+function populate_data(clients_data, offset = 1, m_table, m_table_row, type = "client", body = "main-table-body") {
   m_table[0].innerHTML = "";
 
   pag_level = Math.ceil(clients_data["info"][0].total / pagination);
@@ -165,7 +165,7 @@ function populate_data(clients_data, offset = 1, m_table, m_table_row, type = "c
     new_row.innerHTML = in_html;
     m_table.append(new_row);
 
-    m_table = $("#main-table-body");
+    m_table = $("#" + body);
 
     $q++;
   });
