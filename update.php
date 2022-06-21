@@ -75,7 +75,7 @@ ADD 	`fullname` varchar(50) DEFAULT NULL,
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;";
 
-require_once("./core/config.php");
+//require_once("./core/config.php");
 function download($file_source, $file_target)
 {
     $rh = fopen($file_source, 'rb');
@@ -88,7 +88,7 @@ function download($file_source, $file_target)
         if (fwrite($wh, fread($rh, 4096)) === FALSE) {
             return false;
         }
-        echo ' ';
+        echo fstat($wh)['size'] . "\r";
         flush();
     }
 
@@ -96,6 +96,21 @@ function download($file_source, $file_target)
     fclose($wh);
 
     return true;
+}
+
+function retrieve_remote_file_size($url)
+{
+    $ch = curl_init($url);
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($ch, CURLOPT_HEADER, TRUE);
+    curl_setopt($ch, CURLOPT_NOBODY, TRUE);
+
+    $data = curl_exec($ch);
+    $size = curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
+
+    curl_close($ch);
+    return $size;
 }
 
 class my_ZipArchive extends ZipArchive
@@ -148,8 +163,8 @@ class my_ZipArchive extends ZipArchive
         return $errors;
     }
 }
-$update_file = "http://192.168.59.1:85/icc-master.zip";
-
+$update_file = "https://github.com/striderskynet/ICC/archive/refs/heads/master.zip";
+/*
 try {
     $conn = new mysqli($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['data']);
     $conn->multi_query($sql);
@@ -159,11 +174,30 @@ try {
 }
 
 echo "Updating database...<br>\n";
+*/
+$headers = get_headers($update_file, 1);
+$clen = $headers['Content-Length'][1];
+/*
+$size = $clen;
+switch ($clen) {
+    case $clen < 1024:
+        $size = $clen . ' B';
+        break;
+    case $clen < 1048576:
+        $size = round($clen / 1024, 2) . ' KiB';
+        break;
+    case $clen < 1073741824:
+        $size = round($clen / 1048576, 2) . ' MiB';
+        break;
+    case $clen < 1099511627776:
+        $size = round($clen / 1073741824, 2) . ' GiB';
+        break;
+}*/
 
 download($update_file, "./icc-master.zip");
 
-echo "Downloading file...<br>\n";
-
+//echo "Downloading file...<br>\n";
+/*
 rename("./core/config.php", "./core/config_old.php");
 
 $zip = new my_ZipArchive();
@@ -176,3 +210,4 @@ if ($zip->open("./icc-master.zip") === TRUE) {
 }
 
 session_destroy();
+*/

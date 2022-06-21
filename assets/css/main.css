@@ -1,23 +1,16 @@
-/* Styles for card mode (presentational styles are marked as optional) */
 :root {
   --bs-font-sans-serif: "Roboto", sans-serif;
   --table-border: 10px;
 }
 
-.table {
+.card:hover {
+  cursor: pointer;
 }
 
 .table thead tr th {
   border: 0px !important;
   border-radius: 10px;
 }
-
-.table tbody tr td:first-child {
-}
-
-.table tbody tr td:last-child {
-}
-
 .table tbody tr {
   margin-top: 10px;
   border: 1px solid #eee;
@@ -33,7 +26,7 @@
 
 .table tbody tr td {
   border: 0px !important;
-  user-select: none; /* Standard */
+  user-select: none !important; /* Standard */
 }
 
 .table .price-selected {
@@ -41,7 +34,7 @@
   border: 1px solid rgba(0, 0, 0, 0);
   border-bottom: 1px solid #999;
   border-left: 3px solid var(--bs-primary);
-  user-select: none; /* Standard */
+  user-select: none !important; /* Standard */
 }
 
 .table > :not(:first-child) {
@@ -179,19 +172,6 @@
   border-bottom: 0px !important;
 }
 
-/*
-.table-dark th{
-    border-top: 0px;
-}
-.table-dark th:last-of-type{
-  border-top-right-radius: var(--table-border) !important;
-  border-right: 0px;
-}
-.table-dark th:nth-child(1){
-  border-top-left-radius: var(--table-border) !important;
-  border-left: 0px;
-}
-*/
 #upload_client_picture {
   transition: color 0.5s ease-in;
 }

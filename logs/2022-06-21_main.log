@@ -26,3 +26,4 @@
 2022-06-21 00:15:07	| Data	|		|	SELECT *, `main_vouchers`.`id` as voucher_id FROM main_vouchers, main_clients WHERE `main_vouchers`.`id` = 29 AND main_clients.`id` = main_vouchers.`main_client` ORDER BY main_vouchers.`id` DESC;
 2022-06-21 00:15:07	| Data	|		|	SELECT *, `main_vouchers`.`id` as voucher_id FROM main_vouchers, main_clients WHERE `main_vouchers`.`id` = 29 AND main_clients.`id` = main_vouchers.`main_client` ORDER BY main_vouchers.`id` DESC;
 2022-06-21 00:16:46	| Logi	|		|	SELECT * FROM general_users WHERE `username`='nesty' AND `password`='a4fd01f750dabff701339a213c3be6af'
+2022-06-21 03:10:16	| Logi	|		|	SELECT * FROM general_users WHERE `username`='nesty' AND `password`='a4fd01f750dabff701339a213c3be6af'

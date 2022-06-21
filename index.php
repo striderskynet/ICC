@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 require_once("./core/config.php");
 
 //Building the website
@@ -22,13 +21,9 @@ if (isset($_SESSION['USERID'])) {
       include_once(_THEME_DIR . "panel.php");
       break;
     case "logs":
-      include_once(_THEME_DIR . "logs.php");
-      break;
     case "prices":
-      include_once(_THEME_DIR . "prices.php");
-      break;
     case "users":
-      include_once(_THEME_DIR . "users.php");
+      include_once(_THEME_DIR . @array_keys($_GET)[0] . ".php");
       break;
   }
 } else {
