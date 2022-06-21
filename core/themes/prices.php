@@ -1,6 +1,6 @@
 <?php
 $position = array('Precios', 'Listado de Precios', 'prices');
-$theme = file_get_contents(_LOCAL . "/core/themes/html/" . $position[2] . ".theme.html");
+$theme = file_get_contents(_THEME_DIR . "html" . DS . $position[2] . ".theme.html");
 
 $theme_script = $position[2];
 //$clients_data = api("clients", "list");

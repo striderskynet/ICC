@@ -1,7 +1,12 @@
 <?php
-define("_LOCAL", $_SERVER['DOCUMENT_ROOT'] . "/");
+error_reporting(E_ALL);
 
-define("_VERSION", "0.1.2-alpha");
+
+define("DS", DIRECTORY_SEPARATOR);
+define("_LOCAL", $_SERVER['DOCUMENT_ROOT'] . DS);
+define("_THEME_DIR", _LOCAL . "core" . DS . "themes" . DS);
+
+define("_VERSION", "0.1.3-alpha");
 define("_COMMIT", "2022-06-20T19:14:50Z");
 define("_DEBUG", true);
 
@@ -20,6 +25,6 @@ $config['misc']['pagination'] = 10;
 
 
 // DONT TOUCH BELOW THIS LINE
-require_once(_LOCAL . "core/misc.php");
-require_once(_LOCAL . "core/debug.php");
-require_once(_LOCAL . "core/class/mysql.php");
+require_once(_LOCAL . "core" . DS . "misc.php");
+require_once(_LOCAL . "core" . DS . "debug.php");
+require_once(_LOCAL . "core" . DS . "class" . DS . "mysql.php");

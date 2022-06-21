@@ -1,43 +1,44 @@
 <?php
 session_start();
 
+
 require_once("./core/config.php");
 
 //Building the website
-require_once(_LOCAL . "core/themes/header.php");
+require_once(_THEME_DIR . "header.php");
 
 if (isset($_SESSION['USERID'])) {
   switch (@array_keys($_GET)[0]) {
     case "clients":
-      include_once(_LOCAL . "core/themes/clients.php");
-      require_once(_LOCAL . "core/themes/modals.php");
+      include_once(_THEME_DIR . "clients.php");
+      require_once(_THEME_DIR . "modals.php");
       break;
     case "voucher":
-      include_once(_LOCAL . "core/themes/voucher.php");
-      require_once(_LOCAL . "core/themes/modals.php");
+      include_once(_THEME_DIR . "voucher.php");
+      require_once(_THEME_DIR . "modals.php");
       break;
     case "panel":
     default:
-      include_once(_LOCAL . "core/themes/panel.php");
+      include_once(_THEME_DIR . "panel.php");
       break;
     case "logs":
-      include_once(_LOCAL . "core/themes/logs.php");
+      include_once(_THEME_DIR . "logs.php");
       break;
     case "prices":
-      include_once(_LOCAL . "core/themes/prices.php");
+      include_once(_THEME_DIR . "prices.php");
       break;
     case "users":
-      include_once(_LOCAL . "core/themes/users.php");
+      include_once(_THEME_DIR . "users.php");
       break;
   }
 } else {
   // Check if this is a new Install and Execute Install.php
   if ($_INSTALLED == true) {
-    include_once(_LOCAL . "core/themes/login.php");
+    include_once(_THEME_DIR . "login.php");
   } else {
-    if (file_exists(_LOCAL . "core/themes/install.php"))
-      include_once(_LOCAL . "core/themes/install.php");
+    if (file_exists(_THEME_DIR . "install.php"))
+      include_once(_THEME_DIR . "install.php");
   }
 }
 
-require_once(_LOCAL . "core/themes/footer.php");
+require_once(_THEME_DIR . "footer.php");

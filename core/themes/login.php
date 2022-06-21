@@ -1,6 +1,6 @@
 <?php
 $position = array('Loguearse', 'Loguearse', 'login');
-$theme = file_get_contents(_LOCAL . "/core/themes/html/" . $position[2] . ".theme.html");
+$theme = file_get_contents(_THEME_DIR . "html" . DS . $position[2] . ".theme.html");
 
 $theme_script = "login";
 $login = true;

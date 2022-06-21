@@ -148,11 +148,7 @@ class my_ZipArchive extends ZipArchive
         return $errors;
     }
 }
-
-
 $update_file = "http://192.168.59.1:85/icc-master.zip";
-
-
 
 try {
     $conn = new mysqli($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['data']);

@@ -1,6 +1,6 @@
 <?php
 $position = array('Panel', 'Panel Principal', 'panel');
-$theme = file_get_contents(_LOCAL . "/core/themes/html/" . $position[2] . ".theme.html");
+$theme = file_get_contents(_THEME_DIR . "html" . DS . $position[2] . ".theme.html");
 
 $data['client_count'] = api("clients", "total");
 $data['reserv_count'] = api("vouchers", "total");
@@ -26,6 +26,6 @@ $theme_script = "panel";
 
     var clients_data_api = null;
 </script>
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<!--<script type="text/javascript" src="./assets/js/chart.min.js"></script>-->
+
+<script type="text/javascript" src="./assets/js/apexcharts.js"></script>
 <?php echo $theme; ?>

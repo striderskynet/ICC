@@ -14,7 +14,6 @@ function api($module, $action = null, $values = null, $decode = false)
     global $_ADDRESS;
     $address = $_ADDRESS . "api/?" . $module . "&" . $action . "&" . $values;
 
-
     //echo $address;
     if ($decode == true)
         return json_decode(file_get_contents($address));

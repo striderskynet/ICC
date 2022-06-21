@@ -27,7 +27,7 @@ function voucher_print()
 
     $query = 'SELECT *, `main_vouchers`.`id` as voucher_id FROM main_vouchers, main_clients WHERE `main_vouchers`.`id` = ' . $_GET['id'] . ' AND main_clients.`id` = main_vouchers.`main_client` ORDER BY main_vouchers.`id` DESC;';
 
-    debug(4, $query);
+    //debug(4, $query);
     $data = $db->query($query)->fetchArray();
 
     $query_companions = "SELECT client_id FROM `voucher_client_array` WHERE `voucher_id` = {$data['voucher_id']}";
