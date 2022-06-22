@@ -181,15 +181,15 @@
             <div class="modal-body" id="clientModalBody">
 
                 <!-- Tabs navs -->
-                <ul class="nav nav-tabs nav-justified mb-3" id="ex-with-icons" role="tablist">
+                <ul class="nav nav-tabs mb-3" id="ex-with-icons" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="ex-with-icons-tab-1" data-bs-toggle="tab" href="#ex-with-icons-tabs-1" role="tab" aria-controls="ex-with-icons-tabs-1" aria-selected="true"><i class="fas fa-user-alt fa-fw me-2"></i> Info</a>
+                        <a class="nav-link active" data-color="blue" id="ex-with-icons-tab-1" data-bs-toggle="tab" href="#ex-with-icons-tabs-1" role="tab" aria-controls="ex-with-icons-tabs-1" aria-selected="true"><i class="fas fa-user-alt fa-fw me-2"></i> Info</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link disabled" id="ex-with-icons-tab-2" data-bs-toggle="tab" href="#ex-with-icons-tabs-2" role="tab" aria-controls="ex-with-icons-tabs-2" aria-selected="false" disabled="disabled"><i class="fas fa-chart-line fa-fw me-3"></i> Registro</a>
+                        <a class="nav-link disabled" data-color="red" id="ex-with-icons-tab-2" data-bs-toggle="tab" href="#ex-with-icons-tabs-2" role="tab" aria-controls="ex-with-icons-tabs-2" aria-selected="false" disabled="disabled"><i class="fas fa-chart-line fa-fw me-3"></i> Registro</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link disabled" id="ex-with-icons-tab-3" data-bs-toggle="tab" href="#ex-with-icons-tabs-3" role="tab" aria-controls="ex-with-icons-tabs-3" aria-selected="false" disabled="disabled"><i class="fas fa-list fa-fw me-2"></i> Detalles</a>
+                        <a class="nav-link disabled" data-color="green" id="ex-with-icons-tab-3" data-bs-toggle="tab" href="#ex-with-icons-tabs-3" role="tab" aria-controls="ex-with-icons-tabs-3" aria-selected="false" disabled="disabled"><i class="fas fa-list fa-fw me-2"></i> Detalles</a>
                     </li>
                 </ul>
                 <!-- Tabs navs -->

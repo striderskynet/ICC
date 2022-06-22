@@ -164,8 +164,18 @@ $("#delete_price_button").click(function (e) {
     //console.log(selected_items);
     console.log("Deleting some items");
 
+    var table = "list";
+    switch (dTable) {
+      default:
+        table = "list";
+        break;
+      case "-transport":
+        table = "transport";
+        break;
+    }
+
     $.ajax({
-      url: "./api/?prices&delete",
+      url: "./api/?prices&delete&table=" + table,
       type: "POST",
       data: { info: selected_items },
       success: function (msg) {
@@ -173,6 +183,12 @@ $("#delete_price_button").click(function (e) {
           populate_data(JSON.parse(data), offset, prices_table, prices_table_row, "prices");
           editable_table_reload();
           clear_selected();
+        });
+
+        $.get("./api/?prices&list&table=price_transport", function (data) {
+          populate_table(JSON.parse(data), transport_table, transport_table_row);
+          //populate_data(JSON.parse(data), offset, transport_table, transport_table_row, "transport", "transport-table-body");
+          //editable_table_reload();
         });
       },
     });

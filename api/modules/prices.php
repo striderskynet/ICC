@@ -153,7 +153,7 @@ function prices_delete()
     }
     $where .= ")";
 
-    $query = "DELETE FROM price_list {$where};";
+    $query = "DELETE FROM price_{$_GET['table']} {$where};";
     debug(4, $query);
 
     try {

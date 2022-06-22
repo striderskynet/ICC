@@ -14,7 +14,7 @@ if (isset($_SESSION['USERID'])) {
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Endirecto</title>
+    <title><?php echo $config['title'] ?></title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta name="description" content='Client management system for Tourist Enterprises'>
     <link href="./assets/css/font.awesome.min.css" rel="stylesheet" />

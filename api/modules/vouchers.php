@@ -16,9 +16,6 @@ switch (@array_keys($_GET)[1]) {
     case "total":
         echo voucher_total();
         break;
-    default:
-        echo voucher_show();
-        break;
 }
 
 function voucher_print()
@@ -47,6 +44,8 @@ function voucher_print()
         //$data['companions'][$q]['profile_picture'] = profile_picture ($co[0]['passport'], $co[0]['name'], $co[0]['lastname'], true);
         $q++;
     }
+
+    $data['companions_amount'] = count($comp);
 
     return json_encode($data);
 }

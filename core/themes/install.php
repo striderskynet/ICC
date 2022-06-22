@@ -83,7 +83,7 @@ $theme_script = "";
                     <div class="form-group"><label for="db_data" class="ms-3">Base de datos:</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa fa-asterisk"></i></span>
-                            <input autocomplete='database' placeholder="Base de datos" value='icc_endirecto' type="text" id="db_data" name="db_data" class="form-control form-icon-trailing" required="required" />
+                            <input autocomplete='database' placeholder="Base de datos" value='icc_<?php echo $config['title'] ?>' type="text" id="db_data" name="db_data" class="form-control form-icon-trailing" required="required" />
                         </div>
                     </div>
                     <div class="form-group d-flex justify-content-center">

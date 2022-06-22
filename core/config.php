@@ -11,7 +11,7 @@ define("_COMMIT", "2022-06-20T19:14:50Z");
 define("_DEBUG", true);
 
 
-$config['title'] = "Endirecto";
+$config['title'] = "Kuba4U";
 $_ADDRESS = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]" . "/";
 $_INSTALLED = true;
 
