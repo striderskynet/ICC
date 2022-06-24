@@ -63,11 +63,13 @@ if (isset($_SESSION['USERID'])) {
                     <li class="nav-item"><a class="nav-link" id='nav_link_panel' href="?panel">Panel</a>
                     </li>
                     <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="">Modulos&nbsp;</a>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu align-start">
                             <a class="dropdown-item" id='nav_link_clients' href="?clients"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Clientes</a>
                             <a class="dropdown-item" id='nav_link_voucher' href="?voucher"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;&nbsp;Reservas</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" id='nav_link_prices' href="?prices"><i class="fa fa-dollar" aria-hidden="true"></i>&nbsp;&nbsp;Listado de Precios</a>
+                            <a class="dropdown-item" id='nav_link_agency' href="?agency"><i class="fa fa-dollar" aria-hidden="true"></i>&nbsp;&nbsp;Listado de Agencias</a>
+
                         </div>
                     </li>
                     <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#">Herramientas&nbsp;</a>

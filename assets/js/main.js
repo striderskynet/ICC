@@ -148,6 +148,7 @@ function populate_data(clients_data, offset = 1, m_table, m_table_row, type = "c
         break;
 
       case "prices":
+      case "agency":
         new_row.id = "data_p" + $q;
         new_row.setAttribute("onclick", `select_tr(this, ${clients_data[key].id}, event)`);
         new_row.dataset.priceId = clients_data[key].id;

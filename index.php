@@ -23,6 +23,7 @@ if (isset($_SESSION['USERID'])) {
     case "logs":
     case "prices":
     case "users":
+    case "agency":
       include_once(_THEME_DIR . @array_keys($_GET)[0] . ".php");
       break;
   }

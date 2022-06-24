@@ -21,6 +21,16 @@ switch (array_keys($_GET)[1]) {
     case "password":
         echo users_password();
         break;
+    case "install":
+        echo users_install();
+        break;
+}
+
+function users_install()
+{
+    global $db;
+    $pass = md5($_POST['password']);
+    return $db->query("INSERT INTO general_users ( `username`, `password`, `role` ) VALUES ('{$_POST['username']}', '{$pass}', 'root');");
 }
 
 function users_total()

@@ -60,6 +60,9 @@ function price_add()
         case "transport":
             $query = prices_add_transport();
             break;
+        case "agency":
+            $query = prices_add_agency();
+            break;
     }
     //print_r ( $_POST );
 
@@ -85,6 +88,23 @@ function prices_add_transport()
         '{$_POST['apf_vehicle_type']}',
         '{$_POST['apf_vehicle_max_passenger']}',
         '{$_POST['apf_vehicle_price']}');";
+
+    return $query;
+}
+
+function prices_add_agency()
+{
+    $query = "INSERT INTO `price_agency` (
+        `name`,
+        `type`,
+        `commission`,
+        `contact_phone`,
+        `contact_email`) VALUES (
+        '{$_POST['apf_name']}',
+        '{$_POST['apf_type']}',
+        '{$_POST['apf_commission']}',
+        '{$_POST['apf_contact_phone']}',
+        '{$_POST['apf_contact_email']}');";
 
     return $query;
 }
@@ -178,7 +198,6 @@ function prices_duplicate()
 
     return $query;
 }
-
 
 function prices_list()
 {

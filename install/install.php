@@ -36,6 +36,8 @@ preg_match("\$config\[\'db\'\]\[\'data\'\] \= \"(.*)\"\;\$", $config_file, $matc
 $data_replace = str_replace($matches[1], $_POST['data'], $matches[0]);
 $config_file = str_replace($matches[0], $data_replace, $config_file);
 
+$config_file = str_replace('$_INSTALLED = false;', '$_INSTALLED = true;', $config_file);
+
 try {
     file_put_contents($config_file_path, $config_file);
 } catch (Exception $e) {
